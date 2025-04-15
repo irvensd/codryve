@@ -11,7 +11,6 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<'web' | 'saas' | 'mobile' | 'enterprise'>('web');
   const pathname = usePathname();
   const router = useRouter();
 
@@ -29,9 +28,8 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleServicesClick = (e: React.MouseEvent) => {
+  const handleServicesClick = () => {
     if (pathname !== '/') {
-      e.preventDefault();
       router.push('/#services');
     }
   };
@@ -119,7 +117,7 @@ const Navbar: React.FC = () => {
               <Link
                 href="/#services"
                 onClick={(e) => {
-                  handleServicesClick(e);
+                  handleServicesClick();
                   setIsOpen(false);
                 }}
                 className="text-gray-300 hover:text-white transition-colors duration-300 font-light py-2"
@@ -164,7 +162,7 @@ const Navbar: React.FC = () => {
       <GetStartedForm
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
-        serviceType={selectedService}
+        serviceType="web"
       />
     </nav>
   );

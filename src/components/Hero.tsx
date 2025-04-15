@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FaCode, FaServer, FaMobile } from 'react-icons/fa';
+import { FaCode, FaServer, FaMobile, FaDatabase } from 'react-icons/fa';
 import GetStartedForm from './GetStartedForm';
 
 const services = [
@@ -24,7 +24,6 @@ const services = [
 
 const Hero: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<'web' | 'saas' | 'mobile' | 'enterprise'>('web');
 
   const handleGetStarted = () => {
     setIsFormOpen(true);
@@ -72,7 +71,7 @@ const Hero: React.FC = () => {
       <GetStartedForm
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
-        serviceType={selectedService}
+        serviceType="web"
       />
     </section>
   );
