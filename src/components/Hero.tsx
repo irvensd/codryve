@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FaCode, FaServer, FaMobile, FaDatabase } from 'react-icons/fa';
+import { FaCode, FaServer, FaMobile } from 'react-icons/fa';
 import GetStartedForm from './GetStartedForm';
 
 const services = [

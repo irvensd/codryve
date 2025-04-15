@@ -116,7 +116,7 @@ const Navbar: React.FC = () => {
               </Link>
               <Link
                 href="/#services"
-                onClick={(e) => {
+                onClick={() => {
                   handleServicesClick();
                   setIsOpen(false);
                 }}
