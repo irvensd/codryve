@@ -56,8 +56,8 @@ const Contact: React.FC = () => {
             <h1 className="text-4xl font-light text-white mb-4">
               Contact <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Us</span>
             </h1>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Have a project in mind? Let's discuss how we can help bring your ideas to life.
+            <p className="text-gray-400 mb-8">
+              We&apos;d love to hear from you. Get in touch with us to discuss your project.
             </p>
           </div>
 

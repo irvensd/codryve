@@ -49,7 +49,7 @@ const About: React.FC = () => {
         <div className="mt-16 text-center">
           <h3 className="text-2xl font-light text-gray-900 mb-6">Our Mission</h3>
           <p className="text-gray-600 max-w-3xl mx-auto">
-            At Codryve, we're committed to delivering exceptional digital solutions that drive business growth. 
+            At Codryve, we&apos;re committed to delivering exceptional digital solutions that drive business growth. 
             We believe in the power of technology to transform businesses and create meaningful impact.
           </p>
         </div>
