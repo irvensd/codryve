@@ -4,33 +4,41 @@ import React, { useState } from 'react';
 import { FaCode, FaServer, FaMobile, FaMegaport } from 'react-icons/fa';
 import GetStartedForm from './GetStartedForm';
 
+type ServiceType = 'web' | 'saas' | 'mobile' | 'marketing';
+
 const services = [
   {
     title: 'Web Development',
     description: 'Custom websites built with modern technologies',
     icon: <FaCode className="w-5 h-5 sm:w-6 sm:h-6" />,
+    type: 'web' as ServiceType,
   },
   {
     title: 'SaaS Development',
     description: 'Scalable software solutions for your business',
     icon: <FaServer className="w-5 h-5 sm:w-6 sm:h-6" />,
+    type: 'saas' as ServiceType,
   },
   {
     title: 'App Development',
     description: 'Native and cross-platform mobile applications',
     icon: <FaMobile className="w-5 h-5 sm:w-6 sm:h-6" />,
+    type: 'mobile' as ServiceType,
   },
   {
     title: 'Digital Marketing',
     description: 'Boost your online presence and reach',
     icon: <FaMegaport className="w-5 h-5 sm:w-6 sm:h-6" />,
+    type: 'marketing' as ServiceType,
   }
 ];
 
 const Hero: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<ServiceType>('web');
 
-  const handleGetStarted = () => {
+  const handleGetStarted = (serviceType: ServiceType = 'web') => {
+    setSelectedService(serviceType);
     setIsFormOpen(true);
   };
 
@@ -46,7 +54,7 @@ const Hero: React.FC = () => {
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0">
             <button 
-              onClick={handleGetStarted}
+              onClick={() => handleGetStarted()}
               className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 bg-blue-400 text-gray-900 rounded-md font-light hover:bg-blue-500 active:bg-blue-600 transition-colors duration-300 text-sm sm:text-base"
             >
               Get Started
@@ -61,7 +69,8 @@ const Hero: React.FC = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className="group p-4 sm:p-6 rounded-lg bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-blue-400/50 transition-all duration-300 active:transform active:scale-95 sm:hover:-translate-y-1"
+              className="group p-4 sm:p-6 rounded-lg bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 hover:border-blue-400/50 transition-all duration-300 active:transform active:scale-95 sm:hover:-translate-y-1 cursor-pointer"
+              onClick={() => handleGetStarted(service.type)}
             >
               <div className="mb-2 sm:mb-4 text-blue-400 group-hover:text-purple-400 transition-colors duration-300 flex items-center justify-start">
                 {service.icon}
@@ -76,7 +85,7 @@ const Hero: React.FC = () => {
       <GetStartedForm
         isOpen={isFormOpen}
         onClose={() => setIsFormOpen(false)}
-        serviceType="web"
+        serviceType={selectedService}
       />
     </section>
   );

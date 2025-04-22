@@ -6,10 +6,10 @@ import { FaTimes } from 'react-icons/fa';
 interface GetStartedFormProps {
   isOpen: boolean;
   onClose: () => void;
-  serviceType: 'web' | 'saas' | 'mobile' | 'enterprise';
+  serviceType: 'web' | 'saas' | 'mobile' | 'marketing';
 }
 
-const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, serviceType }) => {
+const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, serviceType: initialServiceType }) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,6 +18,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
     budget: '',
     timeline: '',
     additionalInfo: '',
+    serviceType: initialServiceType,
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -39,6 +40,11 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+
+  // Set initial service type
+  useEffect(() => {
+    setFormData(prev => ({ ...prev, serviceType: initialServiceType }));
+  }, [initialServiceType]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -74,7 +80,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ ...formData, serviceType }),
+          body: JSON.stringify(formData),
         });
 
         const data = await response.json();
@@ -93,6 +99,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
             budget: '',
             timeline: '',
             additionalInfo: '',
+            serviceType: initialServiceType,
           });
           // Close modal after 2 seconds
           setTimeout(() => {
@@ -121,6 +128,14 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
 
   if (!isOpen) return null;
 
+  // Service type options for the dropdown
+  const serviceOptions = [
+    { value: 'web', label: 'Web Development' },
+    { value: 'saas', label: 'SaaS Development' },
+    { value: 'mobile', label: 'App Development' },
+    { value: 'marketing', label: 'Digital Marketing' },
+  ];
+
   return (
     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 overflow-y-auto">
       <div className="min-h-screen px-4 py-6 flex items-center justify-center">
@@ -135,7 +150,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
 
           <div className="text-center mb-5 sm:mb-8">
             <h2 className="text-xl sm:text-2xl font-light text-white mb-2">
-              Get Started with {serviceType.charAt(0).toUpperCase() + serviceType.slice(1)} Development
+              Get Started with a Project
             </h2>
             <p className="text-sm sm:text-base text-gray-400">
               Tell us about your project and we&apos;ll get back to you soon.
@@ -180,6 +195,25 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
             </div>
 
             <div>
+              <label htmlFor="serviceType" className="block text-sm font-medium text-gray-300 mb-1">
+                Service Type
+              </label>
+              <select
+                id="serviceType"
+                name="serviceType"
+                value={formData.serviceType}
+                onChange={handleChange}
+                className="w-full px-3 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
+              >
+                {serviceOptions.map(option => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
               <label htmlFor="company" className="block text-sm font-medium text-gray-300 mb-1">
                 Company (Optional)
               </label>
@@ -206,7 +240,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
                 className={`w-full px-3 py-2 bg-gray-800 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white ${
                   errors.projectDescription ? 'border-red-500' : 'border-gray-700'
                 }`}
-                placeholder={`Describe your ${serviceType} project requirements...`}
+                placeholder={`Describe your project requirements...`}
               />
               {errors.projectDescription && <p className="mt-1 text-sm text-red-500">{errors.projectDescription}</p>}
             </div>
