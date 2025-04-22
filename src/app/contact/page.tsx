@@ -12,6 +12,11 @@ const Contact: React.FC = () => {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -34,13 +39,47 @@ const Contact: React.FC = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = validateForm();
+    
     if (Object.keys(newErrors).length === 0) {
-      console.log('Form submitted:', formData);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setErrors({});
+      setIsSubmitting(true);
+      setSubmitStatus({ type: null, message: '' });
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setSubmitStatus({
+            type: 'success',
+            message: 'Thank you! Your message has been sent successfully.',
+          });
+          setFormData({ name: '', email: '', subject: '', message: '' });
+          
+          // Reset form after 3 seconds
+          setTimeout(() => {
+            setSubmitStatus({ type: null, message: '' });
+          }, 3000);
+        } else {
+          throw new Error(data.error || 'Failed to send message');
+        }
+      } catch (error) {
+        setSubmitStatus({
+          type: 'error',
+          message: error instanceof Error ? error.message : 'Failed to send message. Please try again.',
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
     } else {
       setErrors(newErrors);
     }
@@ -133,12 +172,38 @@ const Contact: React.FC = () => {
                   {errors.message && <p className="mt-1 text-sm text-red-500">{errors.message}</p>}
                 </div>
 
+                {submitStatus.type && (
+                  <div
+                    className={`p-3 rounded-md text-sm ${
+                      submitStatus.type === 'success'
+                        ? 'bg-green-500/10 text-green-400'
+                        : 'bg-red-500/10 text-red-400'
+                    }`}
+                  >
+                    {submitStatus.message}
+                  </div>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full py-2 sm:py-3 bg-blue-400 text-gray-900 rounded-md font-light hover:bg-blue-500 transition-colors duration-300 flex items-center justify-center"
+                  disabled={isSubmitting}
+                  className={`w-full py-2 sm:py-3 bg-blue-400 text-gray-900 rounded-md font-light transition-all duration-300 flex items-center justify-center ${
+                    isSubmitting
+                      ? 'opacity-70 cursor-not-allowed'
+                      : 'hover:bg-blue-500 active:bg-blue-600'
+                  }`}
                 >
-                  <FaPaperPlane className="mr-2" />
-                  Send Message
+                  {isSubmitting ? (
+                    <>
+                      <span className="animate-spin mr-2">⌛</span>
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <FaPaperPlane className="mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </button>
               </form>
             </div>
@@ -152,14 +217,9 @@ const Contact: React.FC = () => {
                     <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 mt-1" />
                     <div className="ml-4">
                       <h3 className="text-base sm:text-lg font-light text-white">Email</h3>
-                      <div className="space-y-1">
-                        <p className="text-sm sm:text-base text-gray-400">
-                          General: <a href="mailto:contact@codryve.com" className="hover:text-blue-400 transition-colors duration-300">contact@codryve.com</a>
-                        </p>
-                        <p className="text-sm sm:text-base text-gray-400">
-                          Support: <a href="mailto:support@codryve.com" className="hover:text-blue-400 transition-colors duration-300">support@codryve.com</a>
-                        </p>
-                      </div>
+                      <p className="text-sm sm:text-base text-gray-400">
+                        <a href="mailto:support@codryve.com" className="hover:text-blue-400 transition-colors duration-300">support@codryve.com</a>
+                      </p>
                     </div>
                   </div>
 
@@ -167,7 +227,7 @@ const Contact: React.FC = () => {
                     <FaPhone className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 mt-1" />
                     <div className="ml-4">
                       <h3 className="text-base sm:text-lg font-light text-white">Phone</h3>
-                      <p className="text-sm sm:text-base text-gray-400">+1 (555) 123-4567</p>
+                      <p className="text-sm sm:text-base text-gray-400">(203) 807-0250</p>
                     </div>
                   </div>
 
@@ -175,7 +235,7 @@ const Contact: React.FC = () => {
                     <FaMapMarkerAlt className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 mt-1" />
                     <div className="ml-4">
                       <h3 className="text-base sm:text-lg font-light text-white">Location</h3>
-                      <p className="text-sm sm:text-base text-gray-400">New York, NY</p>
+                      <p className="text-sm sm:text-base text-gray-400">Houston, TX</p>
                     </div>
                   </div>
                 </div>
