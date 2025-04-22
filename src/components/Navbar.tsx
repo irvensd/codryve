@@ -45,12 +45,12 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${
-      scrolled ? 'bg-gray-900/90 backdrop-blur-md' : 'bg-transparent'
+      scrolled || isOpen ? 'bg-gray-900/90 backdrop-blur-md' : 'bg-transparent'
     }`}>
-      <div className="container mx-auto px-6">
-        <div className="flex justify-between items-center py-6">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex justify-between items-center py-4 sm:py-6">
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-light bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity duration-300">
+            <Link href="/" className="text-xl sm:text-2xl font-light bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity duration-300">
               Codryve
             </Link>
           </div>
@@ -88,75 +88,76 @@ const Navbar: React.FC = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none transition-colors duration-300"
+              className="p-2 -mr-2 text-gray-300 hover:text-white focus:outline-none transition-colors duration-300"
+              aria-label="Toggle menu"
             >
               {isOpen ? (
-                <div className="w-6 h-6">
-                  <FaTimes size={24} />
-                </div>
+                <FaTimes size={24} />
               ) : (
-                <div className="w-6 h-6">
-                  <FaBars size={24} />
-                </div>
+                <FaBars size={24} />
               )}
             </button>
           </div>
         </div>
 
         {/* Mobile Navigation Menu */}
-        {isOpen && (
-          <div className="md:hidden py-4 bg-gray-900/90 backdrop-blur-md rounded-lg mt-2">
-            <div className="flex flex-col space-y-4 px-4">
-              <Link
-                href="/"
-                className="text-gray-300 hover:text-white transition-colors duration-300 font-light py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                href="/#services"
-                onClick={() => {
-                  handleServicesClick();
-                  setIsOpen(false);
-                }}
-                className="text-gray-300 hover:text-white transition-colors duration-300 font-light py-2"
-              >
-                Services
-              </Link>
-              <Link
-                href="/#pricing"
-                className="text-gray-300 hover:text-white transition-colors duration-300 font-light py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Pricing
-              </Link>
-              <Link
-                href="/portfolio"
-                className="text-gray-300 hover:text-white transition-colors duration-300 font-light py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Portfolio
-              </Link>
-              <Link
-                href="/contact"
-                className="text-gray-300 hover:text-white transition-colors duration-300 font-light py-2"
-                onClick={() => setIsOpen(false)}
-              >
-                Contact
-              </Link>
+        <div 
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
+            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          <div className="py-2 space-y-0">
+            <Link
+              href="/"
+              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
+              onClick={() => setIsOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              href="/#services"
+              onClick={() => {
+                handleServicesClick();
+                setIsOpen(false);
+              }}
+              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
+            >
+              Services
+            </Link>
+            <Link
+              href="/#pricing"
+              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
+              onClick={() => setIsOpen(false)}
+            >
+              Pricing
+            </Link>
+            <Link
+              href="/portfolio"
+              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
+              onClick={() => setIsOpen(false)}
+            >
+              Portfolio
+            </Link>
+            <Link
+              href="/contact"
+              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
+              onClick={() => setIsOpen(false)}
+            >
+              Contact
+            </Link>
+            <div className="px-4 py-3">
               <button 
                 onClick={() => {
                   handleGetStarted();
                   setIsOpen(false);
                 }}
-                className="px-6 py-2 bg-white text-gray-900 rounded-md font-light hover:bg-gray-100 transition-colors duration-300 mt-4"
+                className="w-full px-6 py-2.5 bg-white text-gray-900 rounded-md font-light hover:bg-gray-100 active:bg-gray-200 transition-colors duration-300"
               >
                 Get Started
               </button>
             </div>
           </div>
-        )}
+        </div>
       </div>
 
       <GetStartedForm
