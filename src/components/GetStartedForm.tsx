@@ -21,6 +21,11 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
 
   // Prevent body scrolling when modal is open
   useEffect(() => {
@@ -55,24 +60,56 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors = validateForm();
+    
     if (Object.keys(newErrors).length === 0) {
-      // Here you would typically send the form data to your backend
-      console.log('Form submitted:', { ...formData, serviceType });
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        projectDescription: '',
-        budget: '',
-        timeline: '',
-        additionalInfo: '',
-      });
-      setErrors({});
-      onClose();
+      setIsSubmitting(true);
+      setSubmitStatus({ type: null, message: '' });
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ ...formData, serviceType }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          setSubmitStatus({
+            type: 'success',
+            message: 'Thank you! Your project request has been submitted successfully.',
+          });
+          // Reset form
+          setFormData({
+            name: '',
+            email: '',
+            company: '',
+            projectDescription: '',
+            budget: '',
+            timeline: '',
+            additionalInfo: '',
+          });
+          // Close modal after 2 seconds
+          setTimeout(() => {
+            onClose();
+            setSubmitStatus({ type: null, message: '' });
+          }, 2000);
+        } else {
+          throw new Error(data.error || 'Failed to submit form');
+        }
+      } catch (error: any) {
+        setSubmitStatus({
+          type: 'error',
+          message: error.message || 'Failed to submit form. Please try again.',
+        });
+      } finally {
+        setIsSubmitting(false);
+      }
     } else {
       setErrors(newErrors);
     }
@@ -224,11 +261,28 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
               />
             </div>
 
+            {submitStatus.type && (
+              <div
+                className={`p-3 rounded-md text-sm ${
+                  submitStatus.type === 'success'
+                    ? 'bg-green-500/10 text-green-400'
+                    : 'bg-red-500/10 text-red-400'
+                }`}
+              >
+                {submitStatus.message}
+              </div>
+            )}
+
             <button
               type="submit"
-              className="w-full py-2.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-300 font-light"
+              disabled={isSubmitting}
+              className={`w-full py-2.5 bg-blue-500 text-white rounded-md font-light transition-all duration-300 ${
+                isSubmitting
+                  ? 'opacity-70 cursor-not-allowed'
+                  : 'hover:bg-blue-600 active:bg-blue-700'
+              }`}
             >
-              Submit Project Request
+              {isSubmitting ? 'Submitting...' : 'Submit Project Request'}
             </button>
           </form>
         </div>
