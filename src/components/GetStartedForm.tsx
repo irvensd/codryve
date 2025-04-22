@@ -205,7 +205,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
               onChange={handleChange}
               rows={3}
               className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white"
-              placeholder="Any other details you'd like to share..."
+              placeholder="Any other details you&apos;d like to share..."
             />
           </div>
 
