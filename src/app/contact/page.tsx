@@ -152,7 +152,14 @@ const Contact: React.FC = () => {
                     <FaEnvelope className="w-5 h-5 sm:w-6 sm:h-6 text-blue-400 mt-1" />
                     <div className="ml-4">
                       <h3 className="text-base sm:text-lg font-light text-white">Email</h3>
-                      <p className="text-sm sm:text-base text-gray-400">contact@codryve.com</p>
+                      <div className="space-y-1">
+                        <p className="text-sm sm:text-base text-gray-400">
+                          General: <a href="mailto:contact@codryve.com" className="hover:text-blue-400 transition-colors duration-300">contact@codryve.com</a>
+                        </p>
+                        <p className="text-sm sm:text-base text-gray-400">
+                          Support: <a href="mailto:support@codryve.com" className="hover:text-blue-400 transition-colors duration-300">support@codryve.com</a>
+                        </p>
+                      </div>
                     </div>
                   </div>
 
