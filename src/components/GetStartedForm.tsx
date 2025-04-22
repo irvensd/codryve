@@ -13,6 +13,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    phone: '',
     company: '',
     projectDescription: '',
     budget: '',
@@ -62,6 +63,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email is invalid';
     }
+    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
     if (!formData.projectDescription.trim()) newErrors.projectDescription = 'Project description is required';
     return newErrors;
   };
@@ -94,6 +96,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
           setFormData({
             name: '',
             email: '',
+            phone: '',
             company: '',
             projectDescription: '',
             budget: '',
@@ -137,7 +140,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
   ];
 
   return (
-    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 overflow-y-auto">
+    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[9999] overflow-y-auto">
       <div className="min-h-screen px-4 py-6 flex items-center justify-center">
         <div className="bg-gray-900 rounded-lg w-full max-w-lg mx-auto p-5 sm:p-8 relative">
           <button
@@ -192,6 +195,23 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
                 />
                 {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
               </div>
+            </div>
+
+            <div>
+              <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
+                Phone Number
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                className={`w-full px-3 py-2 bg-gray-800 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white ${
+                  errors.phone ? 'border-red-500' : 'border-gray-700'
+                }`}
+              />
+              {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
             </div>
 
             <div>

@@ -42,6 +42,13 @@ const Hero: React.FC = () => {
     setIsFormOpen(true);
   };
 
+  const handleLearnMore = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="min-h-[85vh] flex items-center py-8 sm:py-12 md:py-20 bg-gradient-to-b from-gray-900 to-gray-800">
       <div className="container mx-auto">
@@ -59,7 +66,10 @@ const Hero: React.FC = () => {
             >
               Get Started
             </button>
-            <button className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 border border-gray-600 text-white rounded-md font-light hover:border-blue-400 active:bg-gray-800 transition-colors duration-300 text-sm sm:text-base">
+            <button 
+              onClick={handleLearnMore} 
+              className="w-full sm:w-auto px-6 sm:px-8 py-2.5 sm:py-3 border border-gray-600 text-white rounded-md font-light hover:border-blue-400 active:bg-gray-800 transition-colors duration-300 text-sm sm:text-base"
+            >
               Learn More
             </button>
           </div>
