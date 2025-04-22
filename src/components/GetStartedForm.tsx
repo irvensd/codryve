@@ -6,7 +6,7 @@ import { FaTimes } from 'react-icons/fa';
 interface GetStartedFormProps {
   isOpen: boolean;
   onClose: () => void;
-  serviceType: 'web' | 'saas' | 'mobile' | 'enterprise';
+  serviceType: 'web' | 'marketing' | 'enterprise';
 }
 
 const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, serviceType }) => {

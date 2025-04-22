@@ -26,25 +26,24 @@ const pricingPlans = [
     type: 'web'
   },
   {
-    name: 'SaaS Development',
-    price: '$7,500',
-    period: '/project',
-    description: 'Ideal for software as a service solutions',
+    name: 'Digital Marketing',
+    price: '$2,500',
+    period: '/month',
+    description: 'Boost your online presence and growth',
     features: [
-      'Custom backend development',
-      'User authentication system',
-      'Payment integration',
-      'API development',
-      '3 months of support',
-      'Database setup',
-      'Cloud deployment',
-      'Analytics integration',
-      'Automated testing',
-      'CI/CD pipeline setup'
+      'SEO optimization',
+      'Content marketing',
+      'Social media management',
+      'Email marketing',
+      'PPC campaigns',
+      'Analytics & reporting',
+      'Conversion optimization',
+      'Brand strategy',
+      'Monthly performance reports'
     ],
     popular: true,
-    note: 'Starting price',
-    type: 'saas'
+    note: 'Monthly retainer',
+    type: 'marketing'
   },
   {
     name: 'Enterprise Solutions',
@@ -72,21 +71,6 @@ const pricingPlans = [
 // Additional service plans that can be offered separately or as add-ons
 const additionalServices = [
   {
-    name: 'Mobile Development',
-    price: '$8,500',
-    period: '/project',
-    features: [
-      'Native iOS development',
-      'Native Android development',
-      'Cross-platform solutions',
-      'App store optimization',
-      'Push notifications',
-      'Offline functionality',
-      'Analytics integration',
-      'In-app purchases'
-    ]
-  },
-  {
     name: 'E-commerce Solutions',
     price: '$5,000',
     period: '/project',
@@ -99,36 +83,6 @@ const additionalServices = [
       'Product catalog',
       'Shopping cart functionality',
       'Admin dashboard'
-    ]
-  },
-  {
-    name: 'Digital Marketing',
-    price: '$2,500',
-    period: '/month',
-    features: [
-      'SEO optimization',
-      'Content marketing',
-      'Social media management',
-      'Email marketing',
-      'PPC campaigns',
-      'Analytics & reporting',
-      'Conversion optimization',
-      'Brand strategy'
-    ]
-  },
-  {
-    name: 'AI & Machine Learning',
-    price: '$12,000',
-    period: '/project',
-    features: [
-      'Custom AI solutions',
-      'Machine learning models',
-      'Data analysis',
-      'Predictive analytics',
-      'Natural language processing',
-      'Computer vision',
-      'Model training & deployment',
-      'API integration'
     ]
   },
   {
@@ -165,10 +119,10 @@ const additionalServices = [
 
 const Pricing: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<'web' | 'saas' | 'mobile' | 'enterprise'>('web');
+  const [selectedService, setSelectedService] = useState<'web' | 'marketing' | 'enterprise'>('web');
   const [activeTab, setActiveTab] = useState('main');
 
-  const handleGetStarted = (serviceType: 'web' | 'saas' | 'mobile' | 'enterprise') => {
+  const handleGetStarted = (serviceType: 'web' | 'marketing' | 'enterprise') => {
     setSelectedService(serviceType);
     setIsFormOpen(true);
   };
@@ -247,7 +201,7 @@ const Pricing: React.FC = () => {
                 </ul>
 
                 <button
-                  onClick={() => handleGetStarted(plan.type as 'web' | 'saas' | 'mobile' | 'enterprise')}
+                  onClick={() => handleGetStarted(plan.type as 'web' | 'marketing' | 'enterprise')}
                   className={`w-full py-2 sm:py-3 rounded-md font-light transition-colors duration-300 ${
                     plan.popular
                       ? 'bg-blue-400 text-gray-900 hover:bg-blue-500'
