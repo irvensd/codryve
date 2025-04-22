@@ -47,25 +47,25 @@ const pricingPlans = [
     type: 'saas'
   },
   {
-    name: 'Enterprise Solutions',
+    name: 'Mobile App Development',
     price: '$15,000',
     period: '/project',
-    description: 'For large-scale custom solutions',
+    description: 'For native and cross-platform mobile apps',
     features: [
-      'Full-stack development',
+      'iOS & Android development',
       'Custom UI/UX design',
       '6 months of support',
       'Advanced security features',
-      'Scalable architecture',
-      'API documentation',
-      'Database optimization',
-      'Team training',
-      'Load balancing setup',
-      'Disaster recovery planning'
+      'App Store submissions',
+      'API integration',
+      'Push notifications',
+      'User authentication',
+      'Analytics integration',
+      'Performance optimization'
     ],
     popular: false,
     note: 'Starting price',
-    type: 'enterprise'
+    type: 'mobile'
   }
 ];
 
@@ -84,7 +84,8 @@ const additionalServices = [
       'Product catalog',
       'Shopping cart functionality',
       'Admin dashboard'
-    ]
+    ],
+    type: 'web'
   },
   {
     name: 'Digital Marketing',
@@ -99,16 +100,17 @@ const additionalServices = [
       'Analytics & reporting',
       'Conversion optimization',
       'Brand strategy'
-    ]
+    ],
+    type: 'marketing'
   }
 ];
 
 const Pricing: React.FC = () => {
   const [isFormOpen, setIsFormOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState<'web' | 'saas' | 'mobile' | 'enterprise'>('web');
+  const [selectedService, setSelectedService] = useState<'web' | 'saas' | 'mobile' | 'marketing'>('web');
   const [activeTab, setActiveTab] = useState('main');
 
-  const handleGetStarted = (serviceType: 'web' | 'saas' | 'mobile' | 'enterprise') => {
+  const handleGetStarted = (serviceType: 'web' | 'saas' | 'mobile' | 'marketing') => {
     setSelectedService(serviceType);
     setIsFormOpen(true);
   };
@@ -187,7 +189,7 @@ const Pricing: React.FC = () => {
                 </ul>
 
                 <button
-                  onClick={() => handleGetStarted(plan.type as 'web' | 'saas' | 'mobile' | 'enterprise')}
+                  onClick={() => handleGetStarted(plan.type as 'web' | 'saas' | 'mobile' | 'marketing')}
                   className={`w-full py-2 sm:py-3 rounded-md font-light transition-colors duration-300 ${
                     plan.popular
                       ? 'bg-blue-400 text-gray-900 hover:bg-blue-500'
@@ -200,7 +202,7 @@ const Pricing: React.FC = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto">
             {additionalServices.map((service, index) => (
               <div
                 key={index}
@@ -224,7 +226,7 @@ const Pricing: React.FC = () => {
                 </ul>
 
                 <button
-                  onClick={() => handleGetStarted('web')}
+                  onClick={() => handleGetStarted(service.type as 'web' | 'saas' | 'mobile' | 'marketing')}
                   className="w-full py-2 sm:py-3 bg-gray-700 text-white rounded-md font-light hover:bg-gray-600 transition-colors duration-300"
                 >
                   Get Started
