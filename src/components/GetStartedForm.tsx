@@ -102,10 +102,14 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
         } else {
           throw new Error(data.error || 'Failed to submit form');
         }
-      } catch (error: any) {
+      } catch (error: unknown) {
+        const errorMessage = error instanceof Error 
+          ? error.message 
+          : 'Failed to submit form. Please try again.';
+          
         setSubmitStatus({
           type: 'error',
-          message: error.message || 'Failed to submit form. Please try again.',
+          message: errorMessage,
         });
       } finally {
         setIsSubmitting(false);
