@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.jpg',
+        url: '/og',
         width: 1200,
         height: 630,
         alt: 'Codryve - Web Development & SaaS Solutions',
@@ -42,7 +42,9 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Codryve - Web Development & SaaS Solutions',
     description: 'Professional web development, SaaS solutions, and mobile applications tailored to your business needs.',
-    images: ['/og-image.jpg'],
+    images: ['/og'],
+    site: '@codryve',
+    creator: '@codryve',
   },
   robots: {
     index: true,
@@ -54,9 +56,18 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
+    nocache: false,
   },
   verification: {
     google: 'jYCbowr2cGOE2_TRMayY1NA8uPpkR882CwE2BiRAR14',
+  },
+  category: 'Technology',
+  classification: 'Business',
+  referrer: 'origin-when-cross-origin',
+  other: {
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'black',
+    'format-detection': 'telephone=no',
   },
 };
 
