@@ -116,7 +116,7 @@ const Pricing: React.FC = () => {
   };
 
   return (
-    <section id="pricing" className="py-12 md:py-24 bg-gray-900">
+    <section id="pricing" className="relative py-12 md:py-24 bg-gray-900" style={{ zIndex: 1 }}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl font-light text-white mb-4">

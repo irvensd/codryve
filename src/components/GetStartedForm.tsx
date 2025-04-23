@@ -140,14 +140,14 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
   ];
 
   return (
-    <>
+    <div className="fixed inset-0 isolate" style={{ zIndex: 999999 }}>
       <div 
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[99999] overflow-y-auto"
-        style={{ isolation: 'isolate' }}
-      >
-        <div className="fixed inset-0" onClick={onClose} />
-        <div className="min-h-screen px-4 py-6 flex items-center justify-center relative">
-          <div className="bg-gray-900 rounded-lg w-full max-w-lg mx-auto p-5 sm:p-8 relative z-[99999]">
+        className="fixed inset-0 bg-black/50 backdrop-blur-sm"
+        onClick={onClose}
+      />
+      <div className="fixed inset-0 overflow-y-auto">
+        <div className="min-h-screen px-4 py-6 flex items-center justify-center">
+          <div className="bg-gray-900 rounded-lg w-full max-w-lg mx-auto p-5 sm:p-8 relative" style={{ zIndex: 999999 }}>
             <button
               onClick={onClose}
               className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-white transition-colors duration-300"
@@ -351,7 +351,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

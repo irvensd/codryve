@@ -38,7 +38,7 @@ const services = [
 
 const Services: React.FC = () => {
   return (
-    <section id="services" className="py-12 sm:py-16 md:py-24 bg-gray-900">
+    <section id="services" className="relative py-12 sm:py-16 md:py-24 bg-gray-900" style={{ zIndex: 1 }}>
       <div className="container mx-auto px-4 sm:px-6">
         <div className="text-center mb-10 sm:mb-16">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-light text-white mb-3 sm:mb-4">
