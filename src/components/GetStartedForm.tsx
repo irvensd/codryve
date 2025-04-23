@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { FaTimes } from 'react-icons/fa';
 
 interface GetStartedFormProps {
@@ -10,6 +11,7 @@ interface GetStartedFormProps {
 }
 
 const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, serviceType: initialServiceType }) => {
+  const [mounted, setMounted] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -28,6 +30,11 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
+
+  useEffect(() => {
+    setMounted(true);
+    return () => setMounted(false);
+  }, []);
 
   // Prevent body scrolling when modal is open
   useEffect(() => {
@@ -129,7 +136,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
     }
   };
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   // Service type options for the dropdown
   const serviceOptions = [
@@ -139,15 +146,29 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
     { value: 'marketing', label: 'Digital Marketing' },
   ];
 
-  return (
-    <div className="fixed inset-0 isolate" style={{ zIndex: 999999 }}>
+  const modalContent = (
+    <div 
+      className="fixed inset-0" 
+      style={{ 
+        zIndex: 999999,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+      }}
+    >
       <div 
         className="fixed inset-0 bg-black/50 backdrop-blur-sm"
         onClick={onClose}
+        style={{ position: 'fixed' }}
       />
-      <div className="fixed inset-0 overflow-y-auto">
+      <div className="fixed inset-0 overflow-y-auto" style={{ position: 'fixed' }}>
         <div className="min-h-screen px-4 py-6 flex items-center justify-center">
-          <div className="bg-gray-900 rounded-lg w-full max-w-lg mx-auto p-5 sm:p-8 relative" style={{ zIndex: 999999 }}>
+          <div 
+            className="bg-gray-900 rounded-lg w-full max-w-lg mx-auto p-5 sm:p-8 relative"
+            style={{ zIndex: 999999 }}
+          >
             <button
               onClick={onClose}
               className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-white transition-colors duration-300"
@@ -353,6 +374,8 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
       </div>
     </div>
   );
+
+  return createPortal(modalContent, document.body);
 };
 
 export default GetStartedForm; 

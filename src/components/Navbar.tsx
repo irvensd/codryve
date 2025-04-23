@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
   }
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${
+    <nav className={`fixed w-full z-40 transition-all duration-300 ${
       scrolled || isOpen ? 'bg-gray-900/90 backdrop-blur-md' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 sm:px-6">
