@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 const clients = [
   {
     name: 'Target',
-    logo: '/images/clients/target.webp',
+    logo: '/images/clients/target-stores-vector-logo.png',
     width: 160,
     height: 60
   },
@@ -19,7 +19,7 @@ const clients = [
   },
   {
     name: 'Walgreens',
-    logo: '/images/clients/walgreens-logo_0.png',
+    logo: '/images/clients/Walgreens-Logo-1955.png',
     width: 200,
     height: 60
   }
