@@ -3,10 +3,9 @@ import Hero from '../components/Hero';
 import Services from '../components/Services';
 import About from '../components/About';
 import Process from '../components/Process';
-import Pricing from '../components/Pricing';
 import ClientShowcase from '../components/ClientShowcase';
 import ProjectStats from '../components/ProjectStats';
-import Footer from '../components/Footer';
+import Pricing from '../components/Pricing';
 
 export default function Home() {
   return (
@@ -15,10 +14,9 @@ export default function Home() {
       <Services />
       <About />
       <Process />
+      <ClientShowcase />
       <ProjectStats />
       <Pricing />
-      <ClientShowcase />
-      <Footer />
     </main>
   );
 }

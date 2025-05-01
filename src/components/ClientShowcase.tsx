@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import Skeleton from './Skeleton';
 
 const clients = [
   {
@@ -26,6 +27,12 @@ const clients = [
 ];
 
 export default function ClientShowcase() {
+  const [loadedImages, setLoadedImages] = useState<{ [key: string]: boolean }>({});
+
+  const handleImageLoad = (clientName: string) => {
+    setLoadedImages(prev => ({ ...prev, [clientName]: true }));
+  };
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -48,12 +55,24 @@ export default function ClientShowcase() {
               viewport={{ once: true }}
               className="relative w-full h-24 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300"
             >
+              {!loadedImages[client.name] && (
+                <Skeleton 
+                  className="absolute inset-0"
+                  height="60px"
+                  width={`${client.width}px`}
+                />
+              )}
               <Image
                 src={client.logo}
                 alt={client.name}
                 width={client.width}
                 height={client.height}
-                className="object-contain"
+                className={`object-contain transition-opacity duration-300 ${
+                  loadedImages[client.name] ? 'opacity-100' : 'opacity-0'
+                }`}
+                onLoadingComplete={() => handleImageLoad(client.name)}
+                priority={index === 0} // Only prioritize the first image
+                quality={90}
               />
             </motion.div>
           ))}
