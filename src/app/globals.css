@@ -1,125 +1,66 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --foreground-rgb: 255, 255, 255;
-  --background-start-rgb: 13, 17, 23;
-  --background-end-rgb: 9, 14, 20;
+  --background: #f5f5f3;
+  --foreground: #09090b;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  overscroll-behavior-y: none;
 }
 
 body {
-  background: linear-gradient(
-      to bottom,
-      rgb(var(--background-start-rgb)),
-      rgb(var(--background-end-rgb))
-    )
-    fixed;
-  color: rgb(var(--foreground-rgb));
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
   min-height: 100vh;
   overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
-  .animate-pulse-slow {
-    animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
+main {
+  padding-top: 4.75rem;
+}
 
-  .animate-gradient-x {
-    background-size: 200% 200%;
-    animation: gradient-x 15s ease infinite;
-  }
-
-  .animate-gradient-text {
-    background-size: 200% auto;
-    animation: gradient-text 3s ease infinite;
+@media (min-width: 640px) {
+  main {
+    padding-top: 5.25rem;
   }
 }
 
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.1;
-  }
-  50% {
-    opacity: 0.2;
-  }
-}
-
-@keyframes gradient-x {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes gradient-text {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-  font-size: 16px;
-}
-
-/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #e4e4e7;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #3b82f6, #8b5cf6);
+  background: #a1a1aa;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #2563eb, #7c3aed);
+  background: #71717a;
 }
 
-/* Improve responsive text sizing */
 @media (max-width: 640px) {
   html {
     font-size: 15px;
   }
 }
 
-/* Better mobile container handling */
 .container {
   width: 100%;
   padding-left: 1rem;
@@ -133,27 +74,14 @@ html {
   }
 }
 
-/* Prevent content from being hidden under fixed navbar on mobile */
-main {
-  padding-top: 4rem;
-}
-
-/* Improve mobile scrolling */
-html, body {
-  -webkit-overflow-scrolling: touch;
-}
-
-/* Disable pull-to-refresh on iOS to improve UX */
-html {
-  overscroll-behavior-y: none;
-}
-
-/* Better touch targets for mobile */
-button, a {
+button,
+a {
   touch-action: manipulation;
 }
 
-/* Ensure inputs aren't zoomed on mobile */
-input, textarea, select, button {
+input,
+textarea,
+select,
+button {
   font-size: 16px !important;
 }

@@ -1,15 +1,23 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Layout from "../components/Layout";
 import JsonLd from "../components/JsonLd";
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const ICON_VERSION = "20260421c";
 
 export const metadata: Metadata = {
-  title: "Codryve - Web Development & SaaS Solutions",
-  description: "Professional web development, SaaS solutions, and mobile applications tailored to your business needs. Expert team delivering innovative digital solutions in Houston, TX.",
-  keywords: "web development, SaaS development, mobile apps, digital marketing, Houston web development, Texas tech solutions, custom software development",
+  title: "Codryve — Custom CRMs, Automation & Software Systems",
+  description:
+    "We replace chaos with systems. Custom websites, CRMs, automation, dashboards, and software for firms, practices, churches, restaurants, and growing businesses.",
+  keywords:
+    "custom CRM, workflow automation, business dashboards, MVP development, software studio, law firm software, therapy practice software, church management systems",
   authors: [{ name: "Codryve" }],
   creator: "Codryve",
   publisher: "Codryve",
@@ -18,33 +26,35 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://codryve.com'),
+  metadataBase: new URL("https://codryve.com"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   openGraph: {
-    title: 'Codryve - Web Development & SaaS Solutions',
-    description: 'Professional web development, SaaS solutions, and mobile applications tailored to your business needs. Expert team delivering innovative digital solutions in Houston, TX.',
-    url: 'https://codryve.com',
-    siteName: 'Codryve',
-    locale: 'en_US',
-    type: 'website',
+    title: "Codryve — We Replace Chaos With Systems",
+    description:
+      "Custom CRMs, automation, dashboards, and software solutions for firms, practices, churches, and growing businesses.",
+    url: "https://codryve.com",
+    siteName: "Codryve",
+    locale: "en_US",
+    type: "website",
     images: [
       {
-        url: '/og',
+        url: "/og",
         width: 1200,
         height: 630,
-        alt: 'Codryve - Web Development & SaaS Solutions',
+        alt: "Codryve — Custom software studio",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Codryve - Web Development & SaaS Solutions',
-    description: 'Professional web development, SaaS solutions, and mobile applications tailored to your business needs.',
-    images: ['/og'],
-    site: '@codryve',
-    creator: '@codryve',
+    card: "summary_large_image",
+    title: "Codryve — We Replace Chaos With Systems",
+    description:
+      "Custom CRMs, automation, dashboards, and software for organizations that need better systems.",
+    images: ["/og"],
+    site: "@codryve",
+    creator: "@codryve",
   },
   robots: {
     index: true,
@@ -52,22 +62,32 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
     nocache: false,
   },
   verification: {
-    google: 'jYCbowr2cGOE2_TRMayY1NA8uPpkR882CwE2BiRAR14',
+    google: "jYCbowr2cGOE2_TRMayY1NA8uPpkR882CwE2BiRAR14",
   },
-  category: 'Technology',
-  classification: 'Business',
-  referrer: 'origin-when-cross-origin',
+  category: "Technology",
+  classification: "Business",
+  referrer: "origin-when-cross-origin",
   other: {
-    'apple-mobile-web-app-capable': 'yes',
-    'apple-mobile-web-app-status-bar-style': 'black',
-    'format-detection': 'telephone=no',
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "default",
+    "format-detection": "telephone=no",
+  },
+  icons: {
+    icon: [
+      { url: `/favicon.ico?v=${ICON_VERSION}`, sizes: "any" },
+      { url: `/favicon-48x48.png?v=${ICON_VERSION}`, sizes: "48x48", type: "image/png" },
+      { url: `/favicon-32x32.png?v=${ICON_VERSION}`, sizes: "32x32", type: "image/png" },
+      { url: `/favicon-16x16.png?v=${ICON_VERSION}`, sizes: "16x16", type: "image/png" },
+    ],
+    apple: [{ url: `/apple-touch-icon.png?v=${ICON_VERSION}`, sizes: "180x180", type: "image/png" }],
+    shortcut: `/favicon.ico?v=${ICON_VERSION}`,
   },
 };
 
@@ -77,29 +97,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={sans.variable}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+        <link rel="icon" href={`/favicon.ico?v=${ICON_VERSION}`} sizes="any" />
+        <link rel="shortcut icon" href={`/favicon.ico?v=${ICON_VERSION}`} />
+        <link rel="icon" href={`/favicon-48x48.png?v=${ICON_VERSION}`} type="image/png" sizes="48x48" />
+        <link rel="icon" href={`/favicon-32x32.png?v=${ICON_VERSION}`} type="image/png" sizes="32x32" />
+        <link rel="icon" href={`/favicon-16x16.png?v=${ICON_VERSION}`} type="image/png" sizes="16x16" />
+        <link rel="apple-touch-icon" href={`/apple-touch-icon.png?v=${ICON_VERSION}`} sizes="180x180" />
         <link rel="manifest" href="/site.webmanifest" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#f5f5f3" />
         <JsonLd />
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Codryve" />
         <meta name="application-name" content="Codryve" />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="msapplication-config" content="/browserconfig.xml" />
-        <meta name="theme-color" content="#000000" />
+        <meta name="msapplication-TileColor" content="#f5f5f3" />
+        <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
       </head>
-      <body className={inter.className}>
-        <Layout>
-          {children}
-        </Layout>
+      <body className={`${sans.className} font-sans antialiased`}>
+        <Layout>{children}</Layout>
         <div id="modal-root" />
       </body>
     </html>

@@ -1,117 +1,111 @@
 'use client';
 
 import React from 'react';
-import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import Image from 'next/image';
 import Link from 'next/link';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Footer: React.FC = () => {
-  const currentYear = new Date().getFullYear();
+  const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-gray-900 text-gray-300">
-      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-12">
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
-          <div className="col-span-2 sm:col-span-2 md:col-span-1 mb-2 sm:mb-0">
-            <h3 className="text-lg sm:text-xl font-light text-white mb-3 sm:mb-4">Codryve</h3>
-            <p className="text-sm sm:text-base text-gray-400">
-              Transforming ideas into digital reality through innovative web and app development solutions.
+    <footer className="border-t border-zinc-200/70 bg-[#f0f0ee]">
+      <div className="mx-auto max-w-[70rem] px-5 py-16 sm:px-8 lg:px-12">
+        <div className="flex flex-col gap-12 md:flex-row md:items-start md:justify-between">
+          <div className="max-w-sm">
+            <Link
+              href="/"
+              className="inline-flex items-center gap-3 text-[16px] font-semibold tracking-[-0.02em] text-zinc-950 transition hover:text-zinc-600 sm:text-[17px]"
+            >
+              <Image
+                src="/images/logo.png"
+                alt=""
+                width={112}
+                height={112}
+                className="h-10 w-10 shrink-0 object-contain sm:h-12 sm:w-12"
+              />
+              <span>Codryve</span>
+            </Link>
+            <p className="mt-3 text-sm leading-relaxed text-zinc-500">
+              Custom systems and automation—for teams that value clarity over noise.
             </p>
+            <a
+              href="mailto:hello@codryve.com"
+              className="mt-4 inline-block text-sm font-medium text-zinc-800 underline decoration-zinc-300 underline-offset-4 transition hover:decoration-zinc-500"
+            >
+              hello@codryve.com
+            </a>
           </div>
 
-          <div>
-            <h4 className="text-base sm:text-lg font-light text-white mb-3 sm:mb-4">Quick Links</h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-              <li>
-                <Link href="/" className="hover:text-white transition-colors duration-300">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/#services" className="hover:text-white transition-colors duration-300">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/#pricing" className="hover:text-white transition-colors duration-300">
-                  Pricing
-                </Link>
-              </li>
-              <li>
-                <Link href="/portfolio" className="hover:text-white transition-colors duration-300">
-                  Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white transition-colors duration-300">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-base sm:text-lg font-light text-white mb-3 sm:mb-4">Services</h4>
-            <ul className="space-y-1.5 sm:space-y-2 text-sm sm:text-base">
-              <li>
-                <Link href="/#services" className="hover:text-white transition-colors duration-300">
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/#services" className="hover:text-white transition-colors duration-300">
-                  SaaS Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/#services" className="hover:text-white transition-colors duration-300">
-                  App Development
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-base sm:text-lg font-light text-white mb-3 sm:mb-4">Connect</h4>
-            <div className="flex space-x-4">
-              <a
-                href="https://github.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-                aria-label="GitHub"
-              >
-                <FaGithub size={20} />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin size={20} />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors duration-300"
-                aria-label="Twitter"
-              >
-                <FaTwitter size={20} />
-              </a>
+          <div className="grid grid-cols-2 gap-10 sm:grid-cols-3">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Navigate</p>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                <li>
+                  <Link href="/" className="text-zinc-700 hover:text-zinc-950">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#services" className="text-zinc-700 hover:text-zinc-950">
+                    Services
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#process" className="text-zinc-700 hover:text-zinc-950">
+                    Process
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/contact" className="text-zinc-700 hover:text-zinc-950">
+                    Contact
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">More</p>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                <li>
+                  <Link href="/projects" className="text-zinc-700 hover:text-zinc-950">
+                    Work
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div className="col-span-2 sm:col-span-1">
+              <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Social</p>
+              <div className="mt-4 flex gap-3">
+                <a
+                  href="https://github.com/codryve"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
+                  aria-label="GitHub"
+                >
+                  <FaGithub className="h-4 w-4" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/codryve"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin className="h-4 w-4" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
-          <p className="text-sm sm:text-base text-gray-400">
-            &copy; {currentYear} Codryve. All rights reserved.
-          </p>
+        <div className="mt-12 flex flex-col gap-2 border-t border-zinc-200/80 pt-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; {year} Codryve. All rights reserved.</p>
+          <p className="text-zinc-400">Houston, TX · Remote-first</p>
         </div>
       </div>
     </footer>
   );
 };
 
-export default Footer; 
+export default Footer;

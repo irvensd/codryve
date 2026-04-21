@@ -1,22 +1,24 @@
 import React from 'react';
-import Hero from '../components/Hero';
-import Services from '../components/Services';
-import About from '../components/About';
-import Process from '../components/Process';
-import ClientShowcase from '../components/ClientShowcase';
-import ProjectStats from '../components/ProjectStats';
-import Pricing from '../components/Pricing';
+import {
+  HeroSection,
+  WhoWeHelpSection,
+  ServicesSection,
+  WhySection,
+  SolutionsSection,
+  ProcessSection,
+  FinalCtaSection,
+} from '../components/landing';
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <Hero />
-      <Services />
-      <About />
-      <Process />
-      <ClientShowcase />
-      <ProjectStats />
-      <Pricing />
+    <main className="min-h-screen bg-[#f5f5f3]">
+      <HeroSection />
+      <WhoWeHelpSection />
+      <ServicesSection />
+      <WhySection />
+      <SolutionsSection />
+      <ProcessSection />
+      <FinalCtaSection />
     </main>
   );
 }

@@ -1,172 +1,118 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
+import Image from 'next/image';
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import GetStartedForm from './GetStartedForm';
+import { usePathname } from 'next/navigation';
+import { Menu, X } from 'lucide-react';
+
+const navLinks = [
+  { href: '/#who-we-help', label: 'Industries' },
+  { href: '/#services', label: 'Services' },
+  { href: '/projects', label: 'Work' },
+  { href: '/#process', label: 'Process' },
+  { href: '/contact', label: 'Contact' },
+];
 
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const [isFormOpen, setIsFormOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
 
   useEffect(() => {
-    setMounted(true);
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 8);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleServicesClick = () => {
-    if (pathname !== '/') {
-      router.push('/#services');
-    }
-  };
-
-  const handleGetStarted = () => {
-    setIsFormOpen(true);
-  };
-
-  // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
 
   return (
-    <nav className={`fixed w-full z-40 transition-all duration-300 ${
-      scrolled || isOpen ? 'bg-gray-900/90 backdrop-blur-md' : 'bg-transparent'
-    }`}>
-      <div className="container mx-auto px-4 sm:px-6">
-        <div className="flex justify-between items-center py-4 sm:py-6">
-          <div className="flex items-center">
-            <Link href="/" className="text-xl sm:text-2xl font-light bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent hover:opacity-80 transition-opacity duration-300">
-              Codryve
-            </Link>
-          </div>
+    <header
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[border-color,background-color] duration-500 ${
+        scrolled || isOpen
+          ? 'border-zinc-200/70 bg-[#f5f5f3]/90 backdrop-blur-md backdrop-saturate-150'
+          : 'border-transparent bg-[#f5f5f3]/50 backdrop-blur-sm'
+      }`}
+    >
+      <nav
+        className="mx-auto flex h-16 max-w-[70rem] items-center justify-between px-5 sm:h-[4.25rem] sm:px-8 lg:px-12"
+        aria-label="Primary"
+      >
+        <Link
+          href="/"
+          className="flex items-center gap-3 text-[16px] font-semibold tracking-[-0.02em] text-zinc-950 transition hover:text-zinc-600 sm:gap-3.5 sm:text-[17px]"
+        >
+          <Image
+            src="/images/logo.png"
+            alt=""
+            width={112}
+            height={112}
+            className="h-11 w-11 shrink-0 object-contain sm:h-[3.25rem] sm:w-[3.25rem] lg:h-14 lg:w-14"
+            priority
+          />
+          <span>Codryve</span>
+        </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-gray-300 hover:text-white transition-colors duration-300 font-light">
-              Home
-            </Link>
-            <Link 
-              href="/#services" 
-              onClick={handleServicesClick}
-              className="text-gray-300 hover:text-white transition-colors duration-300 font-light"
+        <div className="hidden items-center gap-9 md:flex">
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="text-[13px] font-medium text-zinc-500 transition duration-300 hover:text-zinc-950"
             >
-              Services
+              {link.label}
             </Link>
-            <Link href="/#pricing" className="text-gray-300 hover:text-white transition-colors duration-300 font-light">
-              Pricing
-            </Link>
-            <Link href="/portfolio" className="text-gray-300 hover:text-white transition-colors duration-300 font-light">
-              Portfolio
-            </Link>
-            <Link href="/contact" className="text-gray-300 hover:text-white transition-colors duration-300 font-light">
-              Contact
-            </Link>
-            <button 
-              onClick={handleGetStarted}
-              className="px-6 py-2 bg-white text-gray-900 rounded-md font-light hover:bg-gray-100 transition-colors duration-300"
-            >
-              Get Started
-            </button>
-          </div>
-
-          {/* Mobile Navigation Button */}
-          <div className="md:hidden">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 -mr-2 text-gray-300 hover:text-white focus:outline-none transition-colors duration-300"
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <FaTimes size={24} />
-              ) : (
-                <FaBars size={24} />
-              )}
-            </button>
-          </div>
+          ))}
+          <Link
+            href="/contact"
+            className="inline-flex h-10 items-center rounded-full bg-zinc-950 px-5 text-[13px] font-medium tracking-wide text-white shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset] ring-1 ring-zinc-950/5 transition duration-300 hover:bg-zinc-800"
+          >
+            Book a call
+          </Link>
         </div>
 
-        {/* Mobile Navigation Menu */}
-        <div 
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${
-            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}
+        <button
+          type="button"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-zinc-200/90 bg-white/80 text-zinc-800 backdrop-blur-sm md:hidden"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-expanded={isOpen}
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
         >
-          <div className="py-2 space-y-0">
+          {isOpen ? <X className="h-5 w-5" strokeWidth={1.75} /> : <Menu className="h-5 w-5" strokeWidth={1.75} />}
+        </button>
+      </nav>
+
+      <div
+        className={`border-t border-zinc-200/70 bg-[#f5f5f3]/95 backdrop-blur-md backdrop-saturate-150 md:hidden ${
+          isOpen ? 'max-h-[min(70vh,24rem)] opacity-100' : 'max-h-0 overflow-hidden opacity-0'
+        } transition-all duration-500 ease-out`}
+      >
+        <div className="flex flex-col gap-0.5 px-5 py-4 sm:px-8">
+          {navLinks.map((link) => (
             <Link
-              href="/"
-              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
+              key={link.href}
+              href={link.href}
+              className="rounded-xl px-3 py-3 text-[13px] font-medium text-zinc-800 transition hover:bg-zinc-200/40"
               onClick={() => setIsOpen(false)}
             >
-              Home
+              {link.label}
             </Link>
-            <Link
-              href="/#services"
-              onClick={() => {
-                handleServicesClick();
-                setIsOpen(false);
-              }}
-              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
-            >
-              Services
-            </Link>
-            <Link
-              href="/#pricing"
-              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
-              onClick={() => setIsOpen(false)}
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/portfolio"
-              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
-              onClick={() => setIsOpen(false)}
-            >
-              Portfolio
-            </Link>
-            <Link
-              href="/contact"
-              className="block px-4 py-3 text-gray-300 hover:text-white hover:bg-gray-800/50 transition-colors duration-300 font-light"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </Link>
-            <div className="px-4 py-3">
-              <button 
-                onClick={() => {
-                  handleGetStarted();
-                  setIsOpen(false);
-                }}
-                className="w-full px-6 py-2.5 bg-white text-gray-900 rounded-md font-light hover:bg-gray-100 active:bg-gray-200 transition-colors duration-300"
-              >
-                Get Started
-              </button>
-            </div>
-          </div>
+          ))}
+          <Link
+            href="/contact"
+            className="mt-3 inline-flex h-11 items-center justify-center rounded-full bg-zinc-950 text-[13px] font-medium tracking-wide text-white"
+            onClick={() => setIsOpen(false)}
+          >
+            Book a strategy call
+          </Link>
         </div>
       </div>
-
-      <GetStartedForm
-        isOpen={isFormOpen}
-        onClose={() => setIsFormOpen(false)}
-        serviceType="web"
-      />
-    </nav>
+    </header>
   );
 };
 
-export default Navbar; 
+export default Navbar;

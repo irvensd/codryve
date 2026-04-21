@@ -2,91 +2,95 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaPhone, FaMapMarkerAlt, FaLinkedin, FaGithub } from 'react-icons/fa';
+import { Mail, Phone, MapPin } from 'lucide-react';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import ContactForm from '../../components/ContactForm';
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-gray-900">
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl font-light text-white mb-4">
-              Contact <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">Us</span>
-            </h1>
-            <p className="text-gray-400 max-w-2xl mx-auto">
-              Get in touch with us to discuss your project and how we can help bring your ideas to life.
+    <main className="min-h-screen bg-[#f5f5f3]">
+      <section className="py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
+          <div className="mx-auto mb-14 max-w-2xl text-center">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Contact</p>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl">Book a strategy call</h1>
+            <p className="mt-4 text-zinc-600">
+              Share where things break today. We&apos;ll help you think in systems—whether we build together or not.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-14">
             <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45 }}
               viewport={{ once: true }}
             >
               <ContactForm />
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, delay: 0.06 }}
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700/50">
-                <h2 className="text-xl font-light text-white mb-6">Contact Information</h2>
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <FaEnvelope className="w-5 h-5 text-blue-400 mt-1" />
-                    <div className="ml-4">
-                      <h3 className="text-base font-light text-white">Email</h3>
-                      <p className="text-sm text-gray-400">
-                        <a href="mailto:support@codryve.com" className="hover:text-blue-400 transition-colors duration-300">
-                          support@codryve.com
-                        </a>
-                      </p>
+              <div className="rounded-2xl border border-zinc-200/90 bg-white p-8 shadow-sm">
+                <h2 className="text-lg font-semibold text-zinc-950">Direct</h2>
+                <ul className="mt-6 space-y-5 text-sm">
+                  <li className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-blue-600">
+                      <Mail className="h-4 w-4" strokeWidth={1.75} aria-hidden />
                     </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <FaPhone className="w-5 h-5 text-blue-400 mt-1" />
-                    <div className="ml-4">
-                      <h3 className="text-base font-light text-white">Phone</h3>
-                      <p className="text-sm text-gray-400">(203) 807-0250</p>
+                    <div>
+                      <p className="font-medium text-zinc-900">Email</p>
+                      <a href="mailto:hello@codryve.com" className="mt-0.5 block text-zinc-600 hover:text-blue-600">
+                        hello@codryve.com
+                      </a>
                     </div>
-                  </div>
-
-                  <div className="flex items-start">
-                    <FaMapMarkerAlt className="w-5 h-5 text-blue-400 mt-1" />
-                    <div className="ml-4">
-                      <h3 className="text-base font-light text-white">Location</h3>
-                      <p className="text-sm text-gray-400">Houston, TX</p>
+                  </li>
+                  <li className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-blue-600">
+                      <Phone className="h-4 w-4" strokeWidth={1.75} aria-hidden />
                     </div>
-                  </div>
-                </div>
+                    <div>
+                      <p className="font-medium text-zinc-900">Phone</p>
+                      <p className="mt-0.5 text-zinc-600">(203) 807-0250</p>
+                    </div>
+                  </li>
+                  <li className="flex gap-4">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-blue-600">
+                      <MapPin className="h-4 w-4" strokeWidth={1.75} aria-hidden />
+                    </div>
+                    <div>
+                      <p className="font-medium text-zinc-900">Location</p>
+                      <p className="mt-0.5 text-zinc-600">Houston, TX · Remote-first</p>
+                    </div>
+                  </li>
+                </ul>
               </div>
 
-              <div className="bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg border border-gray-700/50">
-                <h2 className="text-xl font-light text-white mb-6">Follow Us</h2>
-                <div className="flex space-x-4">
+              <div className="rounded-2xl border border-zinc-200/90 bg-white p-8 shadow-sm">
+                <h2 className="text-lg font-semibold text-zinc-950">Social</h2>
+                <div className="mt-5 flex gap-3">
                   <a
-                    href="https://linkedin.com"
+                    href="https://linkedin.com/company/codryve"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-200 text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
+                    aria-label="LinkedIn"
                   >
-                    <FaLinkedin className="w-5 h-5" />
+                    <FaLinkedin className="h-4 w-4" />
                   </a>
                   <a
-                    href="https://github.com"
+                    href="https://github.com/codryve"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-blue-400 transition-colors duration-300"
+                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-200 text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
+                    aria-label="GitHub"
                   >
-                    <FaGithub className="w-5 h-5" />
+                    <FaGithub className="h-4 w-4" />
                   </a>
                 </div>
               </div>
@@ -96,4 +100,4 @@ export default function ContactPage() {
       </section>
     </main>
   );
-} 
+}
