@@ -10,8 +10,11 @@ const ContactForm: React.FC = () => {
     subject: '',
     message: '',
   });
+  const [fax, setFax] = useState('');
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formMessage, setFormMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -34,15 +37,51 @@ const ContactForm: React.FC = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setFormMessage(null);
     const newErrors = validateForm();
-    if (Object.keys(newErrors).length === 0) {
-      console.log('Form submitted:', formData);
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setErrors({});
-    } else {
+    if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ ...formData, fax }),
+      });
+
+      let data: { error?: string } = {};
+      try {
+        data = (await response.json()) as { error?: string };
+      } catch {
+        data = {};
+      }
+
+      if (response.ok) {
+        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFax('');
+        setErrors({});
+        setFormMessage({
+          type: 'success',
+          text: 'Thanks—your message is on its way. We’ll reply by email when we can.',
+        });
+      } else {
+        setFormMessage({
+          type: 'error',
+          text: data.error || 'Something went wrong. Please try again or email us directly.',
+        });
+      }
+    } catch {
+      setFormMessage({
+        type: 'error',
+        text: 'Could not send your message. Check your connection and try again.',
+      });
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -60,7 +99,36 @@ const ContactForm: React.FC = () => {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="space-y-5">
+      <form onSubmit={handleSubmit} className="relative space-y-5">
+        <div
+          className="pointer-events-none absolute -left-[10000px] h-0 w-0 overflow-hidden opacity-0"
+          aria-hidden="true"
+        >
+          <label htmlFor="contact-fax">Fax</label>
+          <input
+            type="text"
+            id="contact-fax"
+            name="fax"
+            tabIndex={-1}
+            autoComplete="off"
+            value={fax}
+            onChange={(e) => setFax(e.target.value)}
+          />
+        </div>
+
+        {formMessage && (
+          <div
+            className={`rounded-xl px-4 py-3 text-sm ${
+              formMessage.type === 'success'
+                ? 'bg-emerald-50 text-emerald-900 ring-1 ring-emerald-200/80'
+                : 'bg-red-50 text-red-800 ring-1 ring-red-200/80'
+            }`}
+            role="status"
+          >
+            {formMessage.text}
+          </div>
+        )}
+
         <div>
           <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-zinc-800">
             Name
@@ -127,10 +195,11 @@ const ContactForm: React.FC = () => {
 
         <button
           type="submit"
-          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 py-3.5 text-sm font-medium text-white shadow-md transition hover:bg-zinc-800"
+          disabled={isSubmitting}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-950 py-3.5 text-sm font-medium text-white shadow-md transition hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-70"
         >
           <Send className="h-4 w-4" aria-hidden />
-          Send message
+          {isSubmitting ? 'Sending…' : 'Send message'}
         </button>
       </form>
     </div>

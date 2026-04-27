@@ -12,10 +12,10 @@ interface GetStartedFormProps {
 
 const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, serviceType: initialServiceType }) => {
   const [mounted, setMounted] = useState(false);
+  const [fax, setFax] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     company: '',
     projectDescription: '',
     budget: '',
@@ -70,7 +70,6 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       newErrors.email = 'Email is invalid';
     }
-    if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
     if (!formData.projectDescription.trim()) newErrors.projectDescription = 'Project description is required';
     return newErrors;
   };
@@ -89,10 +88,15 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify({ ...formData, fax }),
         });
 
-        const data = await response.json();
+        let data: { error?: string } = {};
+        try {
+          data = (await response.json()) as { error?: string };
+        } catch {
+          data = {};
+        }
 
         if (response.ok) {
           setSubmitStatus({
@@ -103,7 +107,6 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
           setFormData({
             name: '',
             email: '',
-            phone: '',
             company: '',
             projectDescription: '',
             budget: '',
@@ -111,6 +114,7 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
             additionalInfo: '',
             serviceType: initialServiceType,
           });
+          setFax('');
           // Close modal after 2 seconds
           setTimeout(() => {
             onClose();
@@ -186,7 +190,22 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+            <form onSubmit={handleSubmit} className="relative space-y-4 sm:space-y-6">
+              <div
+                className="pointer-events-none absolute -left-[10000px] h-0 w-0 overflow-hidden opacity-0"
+                aria-hidden="true"
+              >
+                <label htmlFor="project-fax">Fax</label>
+                <input
+                  type="text"
+                  id="project-fax"
+                  name="fax"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={fax}
+                  onChange={(e) => setFax(e.target.value)}
+                />
+              </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
                   <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
@@ -221,23 +240,6 @@ const GetStartedForm: React.FC<GetStartedFormProps> = ({ isOpen, onClose, servic
                   />
                   {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email}</p>}
                 </div>
-              </div>
-
-              <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-300 mb-1">
-                  Phone Number
-                </label>
-                <input
-                  type="tel"
-                  id="phone"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`w-full px-3 py-2 bg-gray-800 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-white ${
-                    errors.phone ? 'border-red-500' : 'border-gray-700'
-                  }`}
-                />
-                {errors.phone && <p className="mt-1 text-sm text-red-500">{errors.phone}</p>}
               </div>
 
               <div>

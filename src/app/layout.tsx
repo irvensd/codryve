@@ -13,6 +13,7 @@ const sans = Plus_Jakarta_Sans({
 const ICON_VERSION = "20260421c";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://codryve.com"),
   title: "Codryve — Custom CRMs, Automation & Software Systems",
   description:
     "We replace chaos with systems. Custom websites, CRMs, automation, dashboards, and software for firms, practices, churches, restaurants, and growing businesses.",
@@ -26,15 +27,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://codryve.com"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
-    title: "Codryve — We Replace Chaos With Systems",
-    description:
-      "Custom CRMs, automation, dashboards, and software solutions for firms, practices, churches, and growing businesses.",
-    url: "https://codryve.com",
     siteName: "Codryve",
     locale: "en_US",
     type: "website",
@@ -49,12 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Codryve — We Replace Chaos With Systems",
-    description:
-      "Custom CRMs, automation, dashboards, and software for organizations that need better systems.",
     images: ["/og"],
-    site: "@codryve",
-    creator: "@codryve",
   },
   robots: {
     index: true,
@@ -108,7 +96,7 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
         <meta name="theme-color" content="#f5f5f3" />
         <JsonLd />
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />

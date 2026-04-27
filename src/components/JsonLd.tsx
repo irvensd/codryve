@@ -13,7 +13,7 @@ export default function JsonLd() {
       addressRegion: 'TX',
       addressCountry: 'US',
     },
-    sameAs: ['https://twitter.com/codryve', 'https://linkedin.com/company/codryve'],
+    sameAs: ['https://github.com/codryve', 'https://linkedin.com/company/codryve'],
     areaServed: 'US',
     knowsAbout: [
       'Custom CRM development',

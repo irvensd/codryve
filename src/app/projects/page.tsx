@@ -8,46 +8,52 @@ import Link from 'next/link';
 
 const featuredProjects = [
   {
-    title: 'Law Firm Intake System',
-    industry: 'Legal Operations',
+    title: 'Law firm intake & pipeline',
+    industry: 'Legal operations',
+    disclosure: 'Representative scenario',
     framing:
-      'Built to solve lead leakage between inquiry and signed engagement—while preserving compliance and partner visibility.',
-    outcomes: ['Conflict-aware intake pipeline', 'Matter-ready follow-up automation', 'Clear ownership across staff and attorneys'],
+      'A composite of how we approach intake: closing the gap between first inquiry and signed engagement—with compliance, conflicts, and partner visibility handled deliberately.',
+    outcomes: ['Conflict-aware intake stages', 'Matter-ready follow-up automation', 'Clear ownership across staff and attorneys'],
     icon: Scale,
   },
   {
-    title: 'Restaurant Growth Website',
+    title: 'Restaurant growth & retention',
     industry: 'Hospitality',
+    disclosure: 'Representative scenario',
     framing:
-      'Designed to turn local search traffic into direct reservations, repeat visits, and measurable customer retention.',
-    outcomes: ['Fast mobile-first conversion pages', 'Reservation and campaign workflow integration', 'Loyalty and repeat-customer automation'],
+      'Illustrative of hospitality work: local discovery, reservations, and campaigns tied together so repeat visits are measurable—not guessed.',
+    outcomes: ['Fast, mobile-first conversion pages', 'Reservation and campaign workflows in one loop', 'Loyalty and repeat-customer automation'],
     icon: UtensilsCrossed,
   },
 ];
 
 const supportingSystems = [
   {
-    title: 'Therapist Practice Dashboard',
-    industry: 'Mental Health',
-    summary: 'Session visibility, reminder logic, and day-to-day practice operations in one calm dashboard.',
+    title: 'Therapist practice dashboard',
+    industry: 'Mental health',
+    disclosure: 'Representative pattern',
+    summary: 'Session visibility, reminders, and day-to-day operations in one calm dashboard—typical of clinic-facing builds.',
     icon: HeartPulse,
   },
   {
-    title: 'Church Engagement Platform',
+    title: 'Church engagement & volunteers',
     industry: 'Ministry',
-    summary: 'Member engagement, volunteer flow, and follow-up workflows coordinated in one system.',
+    disclosure: 'Representative pattern',
+    summary: 'Member engagement, volunteer routing, and follow-up workflows coordinated in one place.',
     icon: Church,
   },
   {
     title: 'Credexis CRM',
-    industry: 'Internal Product',
+    industry: 'Product',
+    disclosure: 'Named build',
     summary: 'Custom CRM for lifecycle management, sales accountability, and cleaner team execution.',
     icon: Database,
   },
   {
-    title: 'BibleStem Platform',
+    title: 'BibleStem platform',
     industry: 'Platform',
-    summary: 'Structured content and user journeys designed for long-term platform scale.',
+    disclosure: 'Named build',
+    summary: 'Structured content and user journeys built for long-term product scale.',
     icon: BookOpen,
   },
 ];
@@ -131,12 +137,15 @@ export default function ProjectsPage() {
             transition={{ duration: reduce ? 0 : 0.55, ease: easeLux }}
             className="mx-auto max-w-3xl text-center"
           >
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">Selected Work</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">Work & scenarios</p>
             <h1 className="mt-4 text-[2.45rem] font-semibold tracking-[-0.035em] text-zinc-950 sm:text-5xl lg:text-[3.25rem]">
-              Systems Built for Real Operations
+              Systems built for real operations
             </h1>
             <p className="mx-auto mt-5 max-w-2xl text-[1rem] leading-relaxed text-zinc-500 sm:text-[1.075rem]">
-              Selected systems and websites built around real workflows, adoption, and measurable operational outcomes.
+              The deep dives below are <span className="font-medium text-zinc-700">representative scenarios</span>—they show how we
+              think about workflows and outcomes, not a public case study for a single named client. Many engagements stay under NDA; we
+              share <span className="font-medium text-zinc-700">appropriate references</span> when you&apos;re evaluating a fit. Named
+              product work appears in the grid further down.
             </p>
           </motion.div>
         </div>
@@ -157,7 +166,8 @@ export default function ProjectsPage() {
                 }`}
               >
                 <div>
-                  <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500">{project.industry}</p>
+                  <p className="text-[11px] font-medium uppercase tracking-[0.2em] text-blue-700/90">{project.disclosure}</p>
+                  <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.2em] text-zinc-500">{project.industry}</p>
                   <h2 className="mt-3 text-3xl font-semibold tracking-[-0.03em] text-zinc-950 sm:text-[2rem]">{project.title}</h2>
                   <p className="mt-4 text-[0.97rem] leading-relaxed text-zinc-500">{project.framing}</p>
 
@@ -212,8 +222,13 @@ export default function ProjectsPage() {
       <section className="border-y border-zinc-200/60 bg-[#f1f1ef] py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[70rem] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">Supporting systems</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-zinc-950 sm:text-4xl">Additional builds</h2>
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">More work</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-zinc-950 sm:text-4xl">Patterns and named builds</h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-zinc-500">
+              <span className="font-medium text-zinc-700">Representative patterns</span> mirror industries we serve;{' '}
+              <span className="font-medium text-zinc-700">named builds</span> are products we can point to by name. Adjust labels anytime
+              your public portfolio grows.
+            </p>
           </div>
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2">
@@ -227,8 +242,11 @@ export default function ProjectsPage() {
                 className="rounded-2xl border border-zinc-200/80 bg-white p-6"
               >
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">{system.industry}</p>
-                  <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-800">
+                  <div>
+                    <p className="text-[10px] font-medium uppercase tracking-[0.16em] text-blue-700/90">{system.disclosure}</p>
+                    <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.18em] text-zinc-500">{system.industry}</p>
+                  </div>
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-zinc-800">
                     <system.icon className="h-4 w-4" strokeWidth={1.75} />
                   </div>
                 </div>

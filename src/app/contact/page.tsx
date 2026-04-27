@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, MapPin } from 'lucide-react';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import ContactForm from '../../components/ContactForm';
 
@@ -48,15 +48,6 @@ export default function ContactPage() {
                       <a href="mailto:hello@codryve.com" className="mt-0.5 block text-zinc-600 hover:text-blue-600">
                         hello@codryve.com
                       </a>
-                    </div>
-                  </li>
-                  <li className="flex gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-zinc-200 bg-zinc-50 text-blue-600">
-                      <Phone className="h-4 w-4" strokeWidth={1.75} aria-hidden />
-                    </div>
-                    <div>
-                      <p className="font-medium text-zinc-900">Phone</p>
-                      <p className="mt-0.5 text-zinc-600">(203) 807-0250</p>
                     </div>
                   </li>
                   <li className="flex gap-4">

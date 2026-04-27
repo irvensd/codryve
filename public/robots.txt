@@ -4,6 +4,3 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://codryve.com/sitemap.xml
-
-# Crawl-delay for all bots
-Crawl-delay: 10 

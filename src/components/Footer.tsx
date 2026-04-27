@@ -99,9 +99,19 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="mt-12 flex flex-col gap-2 border-t border-zinc-200/80 pt-8 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-12 flex flex-col gap-4 border-t border-zinc-200/80 pt-8 text-sm text-zinc-500 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
           <p>&copy; {year} Codryve. All rights reserved.</p>
-          <p className="text-zinc-400">Houston, TX · Remote-first</p>
+          <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
+            <div className="flex flex-wrap gap-x-4 gap-y-1">
+              <Link href="/privacy" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-zinc-950 hover:decoration-zinc-500">
+                Privacy
+              </Link>
+              <Link href="/terms" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-zinc-950 hover:decoration-zinc-500">
+                Terms
+              </Link>
+            </div>
+            <p className="text-zinc-400">Houston, TX · Remote-first</p>
+          </div>
         </div>
       </div>
     </footer>

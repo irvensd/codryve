@@ -48,13 +48,13 @@ const Navbar: React.FC = () => {
         >
           <Image
             src="/images/logo.png"
-            alt=""
+            alt="Codryve"
             width={112}
             height={112}
             className="h-11 w-11 shrink-0 object-contain sm:h-[3.25rem] sm:w-[3.25rem] lg:h-14 lg:w-14"
             priority
           />
-          <span>Codryve</span>
+          <span aria-hidden="true">Codryve</span>
         </Link>
 
         <div className="hidden items-center gap-9 md:flex">
