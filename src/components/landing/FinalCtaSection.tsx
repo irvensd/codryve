@@ -28,8 +28,8 @@ export function FinalCtaSection() {
             You don&apos;t need another tool. You need a better system.
           </h2>
           <p className="mx-auto mt-5 max-w-md text-sm leading-relaxed text-zinc-400 sm:text-[0.9375rem]">
-            One conversation to map friction, outline a clean architecture, and decide if we&apos;re the right build
-            partner—no pitch deck required.
+            One conversation to map the friction, outline a clean path forward, and decide if we&apos;re the right
+            build partner.
           </p>
           <Link
             href="/contact"

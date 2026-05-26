@@ -1,6 +1,30 @@
+import path from "path";
 import type { NextConfig } from "next";
 
+// ~/package-lock.json can make Next resolve from the home directory (Next 15 +
+// a second React copy), which breaks RSC and hooks such as useReducedMotion.
+const projectRoot = path.resolve(__dirname);
+const react = path.join(projectRoot, "node_modules/react");
+const reactDom = path.join(projectRoot, "node_modules/react-dom");
+
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: projectRoot,
+  turbopack: {
+    root: projectRoot,
+    resolveAlias: {
+      react,
+      "react-dom": reactDom,
+    },
+  },
+  webpack: (config) => {
+    config.resolve ??= {};
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      react,
+      "react-dom": reactDom,
+    };
+    return config;
+  },
   images: {
     remotePatterns: [
       {

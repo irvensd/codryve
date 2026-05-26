@@ -10,31 +10,47 @@ import { transitionItem, viewportOnce } from './motion';
 const services = [
   {
     title: 'Custom CRM',
-    description: 'One record for every relationship—pipeline, history, and next steps your partners can trust.',
+    description:
+      'One record for every relationship: pipeline, history, status, and next steps your team can trust.',
     icon: Database,
-    bullets: ['Lead qualification & routing', 'Matter or client history in context', 'Intake that matches your standards'],
+    bullets: [
+      'Lead qualification and routing',
+      'Client or matter history in context',
+      'Intake that matches your standards',
+    ],
   },
   {
     title: 'Workflow automation',
-    description: 'Repeatable follow-through. Forms, tasks, and notifications that run without someone remembering.',
+    description:
+      'Repeatable follow-through. Forms, tasks, reminders, and notifications that run without someone remembering.',
     icon: Workflow,
-    bullets: ['Sequences & handoffs', 'Reminders that respect the work', 'Internal process, encoded'],
+    bullets: [
+      'Sequences and handoffs',
+      'Reminder flows that respect the work',
+      'Internal process encoded into the system',
+    ],
   },
   {
     title: 'Dashboards & reporting',
-    description: 'Leadership sees what matters—clean numbers, not another export to reconcile.',
+    description:
+      'Clean visibility into the numbers and activity that matter, without another spreadsheet to reconcile.',
     icon: LayoutDashboard,
-    bullets: ['Revenue & throughput', 'Team load & accountability', 'Operational visibility, one view'],
+    bullets: [
+      'Revenue and throughput',
+      'Team load and accountability',
+      'Operational visibility in one view',
+    ],
   },
   {
     title: 'Websites & Product Development',
-    description: 'High-impact web presence and product foundations—from flagship sites to the platforms your team lives in.',
+    description:
+      'High-impact websites and product foundations built for conversion, clarity, and the systems your team uses behind the scenes.',
     icon: Globe,
     bullets: [
       'Premium websites that convert',
-      'Booking / lead generation sites',
+      'Booking and lead generation flows',
       'Startup MVP platforms',
-      'Client portals & internal tools',
+      'Client portals and internal tools',
     ],
   },
 ];
@@ -47,7 +63,7 @@ export function ServicesSection() {
       <SectionHeader
         eyebrow="Capabilities"
         title="What we build"
-        description="Focused engagements. Each engagement is scoped for clarity, built for maintainability, and delivered with intent."
+        description="Most projects start with one messy workflow: intake, follow-up, reporting, booking, or customer management. We turn that into a system your team can actually use."
       />
 
       <div className="mt-16 grid gap-6 lg:mt-20 lg:grid-cols-2 lg:gap-7">

@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "dev:turbo": "next dev --turbopack",
+    "dev": "node ./node_modules/next/dist/bin/next dev",
+    "dev:turbo": "node ./node_modules/next/dist/bin/next dev --turbopack",
     "clean": "rm -rf .next",
-    "dev:clean": "npm run clean && next dev",
+    "dev:clean": "npm run clean && npm run dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",

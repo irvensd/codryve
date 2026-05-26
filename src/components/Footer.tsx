@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
               <span>Codryve</span>
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-zinc-500">
-              Custom systems and automation—for teams that value clarity over noise.
+              Custom systems and automation for teams that value clarity over noise.
             </p>
             <a
               href="mailto:hello@codryve.com"

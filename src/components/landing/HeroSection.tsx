@@ -53,8 +53,8 @@ export function HeroSection() {
             transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : 0.1, ease: easeLux }}
             className="mt-6 max-w-2xl text-[1.0625rem] leading-[1.55] text-zinc-500 sm:text-lg sm:leading-relaxed"
           >
-            Custom websites, CRMs, automation, dashboards, and software systems for firms, practices, churches,
-            restaurants, and growing businesses.
+            Custom websites, CRMs, dashboards, and automations for businesses that need fewer manual steps,
+            cleaner operations, and better follow-up.
           </motion.p>
 
           <motion.div
@@ -78,7 +78,7 @@ export function HeroSection() {
               href="#services"
               className="inline-flex h-12 items-center justify-center rounded-full border border-zinc-300/90 bg-white/60 px-8 text-[13px] font-medium tracking-wide text-zinc-800 backdrop-blur-sm transition duration-300 hover:border-zinc-400/90 hover:bg-white"
             >
-              View capabilities
+              What We Build
             </Link>
           </motion.div>
 

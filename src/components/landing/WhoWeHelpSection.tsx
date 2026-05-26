@@ -10,28 +10,32 @@ import { transitionItem, viewportOnce } from './motion';
 const audiences = [
   {
     title: 'Law firms',
-    description: 'Intake, matter tracking, and follow-up in one layer—nothing lost between first call and engagement letter.',
+    description:
+      'Intake, matter tracking, and follow-up in one layer so fewer leads fall between first call and engagement letter.',
     icon: Scale,
   },
   {
     title: 'Therapy practices',
-    description: 'Calm client flow, reminders, and light-touch dashboards—built for discretion and day-to-day rhythm.',
+    description:
+      'Calm client flow, reminders, and lightweight dashboards built for discretion and day-to-day rhythm.',
     icon: HeartHandshake,
   },
   {
     title: 'Churches & ministries',
-    description: 'Engagement, volunteers, and follow-up—coordinated without another patchwork of group chats.',
+    description:
+      'Engagement, volunteers, care follow-up, and communication systems without another patchwork of group chats.',
     icon: Church,
   },
   {
-    title: 'Restaurants & Hospitality',
+    title: 'Restaurants & hospitality',
     description:
-      'Online ordering, reservations, loyalty systems, and local growth tools—so guests return and operations stay smooth.',
+      'Online ordering, reservations, loyalty systems, and local growth tools so guests return and operations stay smooth.',
     icon: UtensilsCrossed,
   },
   {
-    title: 'Growing Businesses',
-    description: 'One operational backbone instead of a patchwork of tools—built for how you already run, ready to scale.',
+    title: 'Growing businesses',
+    description:
+      'One operational backbone instead of a patchwork of tools, built for how the business already runs.',
     icon: Briefcase,
   },
 ];
