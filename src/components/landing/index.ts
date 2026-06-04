@@ -3,6 +3,8 @@ export { SectionHeader } from './SectionHeader';
 export { HeroSection } from './HeroSection';
 export { WhoWeHelpSection } from './WhoWeHelpSection';
 export { ServicesSection } from './ServicesSection';
+export { LocalGrowthSection } from './LocalGrowthSection';
+export { WebsiteSystemSection } from './WebsiteSystemSection';
 export { WhySection } from './WhySection';
 export { SolutionsSection } from './SolutionsSection';
 export { ProcessSection } from './ProcessSection';

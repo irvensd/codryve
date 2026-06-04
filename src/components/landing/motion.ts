@@ -17,3 +17,25 @@ export const transitionItem = (i: number) => ({
   ease: easeLux,
   delay: i * 0.05,
 });
+
+export const motionVisible = { opacity: 1, y: 0 } as const;
+
+/** Above-the-fold entrance — same markup on server and first client paint. */
+export function entranceProps(mounted: boolean, reduce: boolean, y: number) {
+  if (!mounted || reduce) {
+    return { initial: motionVisible, animate: motionVisible };
+  }
+  return { initial: { opacity: 0, y }, animate: motionVisible };
+}
+
+/** Scroll-triggered blocks — avoid whileInView initial state during hydration. */
+export function inViewProps(mounted: boolean, reduce: boolean, y: number) {
+  if (!mounted || reduce) {
+    return { initial: motionVisible, whileInView: motionVisible };
+  }
+  return { initial: { opacity: 0, y }, whileInView: motionVisible };
+}
+
+export function motionDuration(mounted: boolean, reduce: boolean, duration: number) {
+  return !mounted || reduce ? 0 : duration;
+}

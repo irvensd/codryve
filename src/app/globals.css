@@ -3,17 +3,44 @@
 :root {
   --background: #f5f5f3;
   --foreground: #09090b;
+  --brand: #2563eb;
+  --brand-bright: #3b82f6;
+  --brand-soft: #eff6ff;
+  --brand-muted: #eef4ff;
+  --brand-navy: #07111f;
+  --brand-glow: rgba(37, 99, 235, 0.14);
+  --brand-glow-strong: rgba(37, 99, 235, 0.24);
+  --brand-success: #10b981;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-brand: var(--brand);
+  --color-brand-bright: var(--brand-bright);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-muted: var(--brand-muted);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-success: var(--brand-success);
 }
 
 html {
   scroll-behavior: smooth;
   font-size: 16px;
   overscroll-behavior-y: none;
+}
+
+/* Fixed navbar: anchor links land below the header */
+section[id],
+main > section[id] {
+  scroll-margin-top: 5.5rem;
+}
+
+@media (min-width: 640px) {
+  section[id],
+  main > section[id] {
+    scroll-margin-top: 5.25rem;
+  }
 }
 
 body {
@@ -84,4 +111,58 @@ textarea,
 select,
 button {
   font-size: 16px !important;
+}
+
+@layer components {
+  .text-eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.28em] text-brand;
+  }
+
+  .text-eyebrow-dark {
+    @apply text-[11px] font-medium uppercase tracking-[0.28em] text-brand-bright/90;
+  }
+
+  .icon-box {
+    @apply flex items-center justify-center rounded-2xl border border-brand/15 bg-brand-soft text-brand transition duration-500;
+  }
+
+  .icon-box-sm {
+    @apply flex items-center justify-center rounded-xl border border-brand/15 bg-brand-soft text-brand transition duration-500;
+  }
+
+  .icon-box-dark {
+    @apply flex items-center justify-center rounded-2xl border border-brand/25 bg-brand/10 text-brand-bright transition duration-500;
+  }
+
+  .card-hover-lift {
+    @apply transition duration-500 ease-out hover:-translate-y-0.5 hover:border-brand/25 hover:shadow-[0_24px_48px_-20px_var(--brand-glow)];
+  }
+
+  .card-hover-glow {
+    @apply transition duration-500 ease-out hover:border-brand/30 hover:shadow-[0_28px_56px_-24px_var(--brand-glow-strong)];
+  }
+
+  .bullet-brand {
+    @apply border-l-2 border-brand/35 pl-4;
+  }
+
+  .btn-primary-brand {
+    @apply inline-flex items-center justify-center rounded-full bg-zinc-950 text-white shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset,0_12px_40px_-12px_rgba(0,0,0,0.35)] ring-1 ring-zinc-950/5 transition duration-300 hover:bg-zinc-800 hover:shadow-[0_12px_40px_-8px_var(--brand-glow-strong)];
+  }
+
+  .btn-secondary-brand {
+    @apply inline-flex items-center justify-center rounded-full border border-zinc-300/90 bg-white/60 text-zinc-800 backdrop-blur-sm transition duration-300 hover:-translate-y-px hover:border-brand/40 hover:bg-white hover:text-brand;
+  }
+
+  .link-brand-hover {
+    @apply transition duration-300 hover:text-brand;
+  }
+
+  .glow-blue-soft {
+    background: radial-gradient(ellipse 70% 55% at 50% 0%, var(--brand-glow), transparent 65%);
+  }
+
+  .glow-blue-corner {
+    background: radial-gradient(ellipse 55% 45% at 100% 0%, rgba(59, 130, 246, 0.18), transparent 55%);
+  }
 }

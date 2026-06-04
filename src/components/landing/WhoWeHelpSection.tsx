@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Scale, HeartHandshake, Church, UtensilsCrossed, Briefcase } from 'lucide-react';
 import { Section } from './Section';
 import { SectionHeader } from './SectionHeader';
-import { transitionItem, viewportOnce } from './motion';
+import { inViewProps, motionDuration, transitionItem, viewportOnce } from './motion';
+import { useMotionHydration } from './motion-hooks';
 
 const audiences = [
   {
@@ -29,19 +30,19 @@ const audiences = [
   {
     title: 'Restaurants & hospitality',
     description:
-      'Online ordering, reservations, loyalty systems, and local growth tools so guests return and operations stay smooth.',
+      'Online ordering, reservations, loyalty systems, review flows, and local growth tools that help guests book, return, and refer.',
     icon: UtensilsCrossed,
   },
   {
     title: 'Growing businesses',
     description:
-      'One operational backbone instead of a patchwork of tools, built for how the business already runs.',
+      'One operational backbone instead of a patchwork of tools, built for how your business already runs and where it needs to go.',
     icon: Briefcase,
   },
 ];
 
 export function WhoWeHelpSection() {
-  const reduce = useReducedMotion();
+  const { mounted, reduce } = useMotionHydration();
 
   return (
     <Section id="who-we-help" className="border-t border-zinc-200/60 bg-white py-24 sm:py-28 lg:py-32">
@@ -55,13 +56,12 @@ export function WhoWeHelpSection() {
         {audiences.map((item, index) => (
           <motion.article
             key={item.title}
-            initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            {...inViewProps(mounted, reduce, 20)}
             viewport={viewportOnce}
-            transition={{ ...transitionItem(index), duration: reduce ? 0 : 0.5 }}
-            className="group flex flex-col rounded-3xl border border-zinc-200/70 bg-zinc-50/30 p-7 shadow-[0_1px_0_0_rgba(255,255,255,0.6)_inset] transition duration-500 ease-out hover:-translate-y-0.5 hover:border-zinc-300/80 hover:bg-white hover:shadow-[0_24px_48px_-20px_rgba(0,0,0,0.08)] sm:p-8"
+            transition={{ ...transitionItem(index), duration: motionDuration(mounted, reduce, 0.5) }}
+            className="group flex flex-col rounded-3xl border border-zinc-200/70 bg-zinc-50/30 p-7 shadow-[0_1px_0_0_rgba(255,255,255,0.6)_inset] card-hover-lift sm:p-8"
           >
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-zinc-200/80 bg-white text-zinc-800 transition duration-500 group-hover:border-zinc-300">
+            <div className="icon-box h-11 w-11 group-hover:border-brand/30">
               <item.icon className="h-5 w-5" strokeWidth={1.5} aria-hidden />
             </div>
             <h3 className="mt-6 text-lg font-semibold tracking-tight text-zinc-950">{item.title}</h3>

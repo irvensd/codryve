@@ -1,9 +1,10 @@
 'use client';
 
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ArrowRight, Scale, UtensilsCrossed, HeartPulse, Church, Database, BookOpen, Check } from 'lucide-react';
-import { easeLux, viewportOnce } from '../../components/landing/motion';
+import { easeLux, entranceProps, inViewProps, motionDuration, viewportOnce } from '../../components/landing/motion';
+import { useMotionHydration } from '../../components/landing/motion-hooks';
 import Link from 'next/link';
 
 const featuredProjects = [
@@ -125,16 +126,15 @@ function RestaurantMockup() {
 }
 
 export default function ProjectsPage() {
-  const reduce = useReducedMotion();
+  const { mounted, reduce } = useMotionHydration();
 
   return (
     <main className="min-h-screen bg-[#f5f5f3]">
       <section className="border-b border-zinc-200/60 py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[70rem] px-5 sm:px-8 lg:px-12">
           <motion.div
-            initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduce ? 0 : 0.55, ease: easeLux }}
+            {...entranceProps(mounted, reduce, 16)}
+            transition={{ duration: motionDuration(mounted, reduce, 0.55), ease: easeLux }}
             className="mx-auto max-w-3xl text-center"
           >
             <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">Work & scenarios</p>
@@ -157,10 +157,9 @@ export default function ProjectsPage() {
             {featuredProjects.map((project, i) => (
               <motion.article
                 key={project.title}
-                initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                {...inViewProps(mounted, reduce, 20)}
                 viewport={viewportOnce}
-                transition={{ duration: reduce ? 0 : 0.55, delay: reduce ? 0 : i * 0.05, ease: easeLux }}
+                transition={{ duration: motionDuration(mounted, reduce, 0.55), delay: mounted && !reduce ? i * 0.05 : 0, ease: easeLux }}
                 className={`group grid gap-8 rounded-[2rem] border border-zinc-200/75 bg-white p-7 shadow-[0_1px_0_0_rgba(0,0,0,0.02)_inset] transition duration-500 hover:-translate-y-0.5 hover:border-zinc-300/90 hover:shadow-[0_30px_60px_-28px_rgba(0,0,0,0.15)] sm:p-8 lg:grid-cols-2 lg:items-center lg:gap-10 ${
                   i % 2 === 1 ? 'lg:[&>div:first-child]:order-2 lg:[&>div:last-child]:order-1' : ''
                 }`}
@@ -235,10 +234,9 @@ export default function ProjectsPage() {
             {supportingSystems.map((system, i) => (
               <motion.article
                 key={system.title}
-                initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                {...inViewProps(mounted, reduce, 16)}
                 viewport={viewportOnce}
-                transition={{ duration: reduce ? 0 : 0.45, delay: reduce ? 0 : i * 0.06, ease: easeLux }}
+                transition={{ duration: motionDuration(mounted, reduce, 0.45), delay: mounted && !reduce ? i * 0.06 : 0, ease: easeLux }}
                 className="rounded-2xl border border-zinc-200/80 bg-white p-6"
               >
                 <div className="flex items-center justify-between gap-3">
@@ -271,10 +269,9 @@ export default function ProjectsPage() {
             {buildDifferently.map((item, i) => (
               <motion.div
                 key={item}
-                initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                {...inViewProps(mounted, reduce, 16)}
                 viewport={viewportOnce}
-                transition={{ duration: reduce ? 0 : 0.45, delay: reduce ? 0 : i * 0.06, ease: easeLux }}
+                transition={{ duration: motionDuration(mounted, reduce, 0.45), delay: mounted && !reduce ? i * 0.06 : 0, ease: easeLux }}
                 className="rounded-2xl border border-zinc-200/80 bg-white p-6"
               >
                 <div className="flex items-start gap-3">

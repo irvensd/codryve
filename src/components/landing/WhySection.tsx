@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { GitBranch, Palette, Zap, Cpu, LifeBuoy } from 'lucide-react';
 import { Section } from './Section';
 import { SectionHeader } from './SectionHeader';
-import { transitionItem, viewportOnce } from './motion';
+import { inViewProps, motionDuration, transitionItem, viewportOnce } from './motion';
+import { useMotionHydration } from './motion-hooks';
 
 const reasons = [
   {
@@ -36,16 +37,17 @@ const reasons = [
 ];
 
 export function WhySection() {
-  const reduce = useReducedMotion();
+  const { mounted, reduce } = useMotionHydration();
 
   return (
     <Section
       id="why-codryve"
-      className="relative overflow-hidden border-t border-zinc-800/50 bg-zinc-950 py-24 text-white sm:py-28 lg:py-32"
+      className="relative overflow-hidden border-t border-zinc-800/50 bg-brand-navy py-24 text-white sm:py-28 lg:py-32"
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-1/2 top-0 h-[min(520px,90vw)] w-[min(900px,120%)] -translate-x-1/2 bg-[radial-gradient(ellipse_80%_50%_at_50%_-10%,rgba(255,255,255,0.07),transparent_55%)]" />
-        <div className="absolute bottom-0 right-0 h-72 w-72 translate-x-1/4 translate-y-1/4 rounded-full bg-white/[0.03] blur-3xl" />
+        <div className="glow-blue-corner absolute right-0 top-0 h-[min(420px,70vw)] w-[min(420px,70vw)] opacity-80" />
+        <div className="absolute bottom-0 left-0 h-72 w-72 -translate-x-1/4 translate-y-1/4 rounded-full bg-[radial-gradient(circle,rgba(37,99,235,0.12),transparent_70%)] blur-3xl" />
       </div>
 
       <div className="relative">
@@ -60,13 +62,12 @@ export function WhySection() {
           {reasons.map((r, index) => (
             <motion.div
               key={r.title}
-              initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              {...inViewProps(mounted, reduce, 18)}
               viewport={viewportOnce}
-              transition={{ ...transitionItem(index), duration: reduce ? 0 : 0.48 }}
-              className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-7 transition duration-500 hover:border-white/[0.12] hover:bg-white/[0.05] sm:p-8"
+              transition={{ ...transitionItem(index), duration: motionDuration(mounted, reduce, 0.48) }}
+              className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-7 transition duration-500 hover:border-brand/30 hover:bg-white/[0.05] hover:shadow-[0_20px_40px_-20px_rgba(37,99,235,0.2)] sm:p-8"
             >
-              <r.icon className="h-5 w-5 text-zinc-300" strokeWidth={1.5} aria-hidden />
+              <r.icon className="h-5 w-5 text-brand-bright/90" strokeWidth={1.5} aria-hidden />
               <h3 className="mt-5 text-base font-semibold tracking-tight text-white">{r.title}</h3>
               <p className="mt-2 text-sm leading-relaxed text-zinc-400">{r.body}</p>
             </motion.div>

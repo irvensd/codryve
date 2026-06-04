@@ -4,6 +4,8 @@ import {
   HeroSection,
   WhoWeHelpSection,
   ServicesSection,
+  LocalGrowthSection,
+  WebsiteSystemSection,
   WhySection,
   SolutionsSection,
   ProcessSection,
@@ -13,7 +15,7 @@ import {
 export const metadata: Metadata = {
   title: 'Codryve — Custom CRMs, Automation & Software Systems',
   description:
-    'We replace chaos with systems. Custom websites, CRMs, automation, dashboards, and software for firms, practices, churches, restaurants, and growing businesses.',
+    'We replace chaos with systems. Custom websites, CRMs, automation, dashboards, local growth systems, and software for firms, practices, churches, restaurants, and growing businesses.',
   alternates: { canonical: '/' },
   openGraph: {
     title: 'Codryve — We Replace Chaos With Systems',
@@ -34,6 +36,8 @@ export default function Home() {
       <HeroSection />
       <WhoWeHelpSection />
       <ServicesSection />
+      <LocalGrowthSection />
+      <WebsiteSystemSection />
       <WhySection />
       <SolutionsSection />
       <ProcessSection />

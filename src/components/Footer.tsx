@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
           <div className="max-w-sm">
             <Link
               href="/"
-              className="inline-flex items-center gap-3 text-[16px] font-semibold tracking-[-0.02em] text-zinc-950 transition hover:text-zinc-600 sm:text-[17px]"
+              className="inline-flex items-center gap-3 text-[16px] font-semibold tracking-[-0.02em] text-zinc-950 transition hover:text-brand sm:text-[17px]"
             >
               <Image
                 src="/images/logo.png"
@@ -27,11 +27,11 @@ const Footer: React.FC = () => {
               <span>Codryve</span>
             </Link>
             <p className="mt-3 text-sm leading-relaxed text-zinc-500">
-              Custom systems and automation for teams that value clarity over noise.
+              Custom websites, automation, and systems for teams that value clarity over noise.
             </p>
             <a
               href="mailto:hello@codryve.com"
-              className="mt-4 inline-block text-sm font-medium text-zinc-800 underline decoration-zinc-300 underline-offset-4 transition hover:decoration-zinc-500"
+              className="mt-4 inline-block text-sm font-medium text-zinc-800 underline decoration-zinc-300 underline-offset-4 transition hover:text-brand hover:decoration-brand/50"
             >
               hello@codryve.com
             </a>
@@ -42,22 +42,27 @@ const Footer: React.FC = () => {
               <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">Navigate</p>
               <ul className="mt-4 space-y-2.5 text-sm">
                 <li>
-                  <Link href="/" className="text-zinc-700 hover:text-zinc-950">
+                  <Link href="/" className="link-brand-hover text-zinc-700">
                     Home
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#services" className="text-zinc-700 hover:text-zinc-950">
+                  <Link href="/#services" className="link-brand-hover text-zinc-700">
                     Services
                   </Link>
                 </li>
                 <li>
-                  <Link href="/#process" className="text-zinc-700 hover:text-zinc-950">
+                  <Link href="/#local-growth" className="link-brand-hover text-zinc-700">
+                    Local growth
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/#process" className="link-brand-hover text-zinc-700">
                     Process
                   </Link>
                 </li>
                 <li>
-                  <Link href="/contact" className="text-zinc-700 hover:text-zinc-950">
+                  <Link href="/contact" className="link-brand-hover text-zinc-700">
                     Contact
                   </Link>
                 </li>
@@ -67,7 +72,7 @@ const Footer: React.FC = () => {
               <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">More</p>
               <ul className="mt-4 space-y-2.5 text-sm">
                 <li>
-                  <Link href="/projects" className="text-zinc-700 hover:text-zinc-950">
+                  <Link href="/projects" className="link-brand-hover text-zinc-700">
                     Work
                   </Link>
                 </li>
@@ -80,7 +85,7 @@ const Footer: React.FC = () => {
                   href="https://github.com/codryve"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 transition hover:border-brand/30 hover:bg-brand-soft hover:text-brand"
                   aria-label="GitHub"
                 >
                   <FaGithub className="h-4 w-4" />
@@ -89,7 +94,7 @@ const Footer: React.FC = () => {
                   href="https://linkedin.com/company/codryve"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-zinc-200 bg-white text-zinc-600 transition hover:border-brand/30 hover:bg-brand-soft hover:text-brand"
                   aria-label="LinkedIn"
                 >
                   <FaLinkedin className="h-4 w-4" />
@@ -100,13 +105,13 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="mt-12 flex flex-col gap-4 border-t border-zinc-200/80 pt-8 text-sm text-zinc-500 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">
-          <p>&copy; {year} Codryve. All rights reserved.</p>
+          <p suppressHydrationWarning>&copy; {year} Codryve. All rights reserved.</p>
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-6">
             <div className="flex flex-wrap gap-x-4 gap-y-1">
-              <Link href="/privacy" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-zinc-950 hover:decoration-zinc-500">
+              <Link href="/privacy" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 transition hover:text-brand hover:decoration-brand/50">
                 Privacy
               </Link>
-              <Link href="/terms" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 hover:text-zinc-950 hover:decoration-zinc-500">
+              <Link href="/terms" className="text-zinc-600 underline decoration-zinc-300 underline-offset-4 transition hover:text-brand hover:decoration-brand/50">
                 Terms
               </Link>
             </div>

@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
-import { easeLux, viewportOnce } from './motion';
+import { motion } from 'framer-motion';
+import { easeLux, inViewProps, motionDuration, viewportOnce } from './motion';
+import { useMotionHydration } from './motion-hooks';
 
 type SectionHeaderProps = {
   eyebrow: string;
@@ -13,17 +14,16 @@ type SectionHeaderProps = {
 };
 
 export function SectionHeader({ eyebrow, title, description, variant = 'light', align = 'center' }: SectionHeaderProps) {
-  const reduce = useReducedMotion();
+  const { mounted, reduce } = useMotionHydration();
 
   return (
     <motion.div
-      initial={{ opacity: reduce ? 1 : 0, y: reduce ? 0 : 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      {...inViewProps(mounted, reduce, 20)}
       viewport={viewportOnce}
-      transition={{ duration: reduce ? 0 : 0.55, ease: easeLux }}
+      transition={{ duration: motionDuration(mounted, reduce, 0.55), ease: easeLux }}
       className={`max-w-2xl ${align === 'center' ? 'mx-auto text-center' : 'text-left'}`}
     >
-      <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">{eyebrow}</p>
+      <p className={variant === 'dark' ? 'text-eyebrow-dark' : 'text-eyebrow'}>{eyebrow}</p>
       <h2
         className={`mt-4 text-[1.75rem] font-semibold leading-[1.12] tracking-[-0.025em] sm:text-4xl sm:leading-[1.1] lg:text-[2.625rem] ${
           variant === 'dark' ? 'text-white' : 'text-zinc-950'

@@ -9,7 +9,7 @@ import { Menu, X } from 'lucide-react';
 const navLinks = [
   { href: '/#who-we-help', label: 'Industries' },
   { href: '/#services', label: 'Services' },
-  { href: '/projects', label: 'Work' },
+  { href: '/#solutions', label: 'Work' },
   { href: '/#process', label: 'Process' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
       >
         <Link
           href="/"
-          className="flex items-center gap-3 text-[16px] font-semibold tracking-[-0.02em] text-zinc-950 transition hover:text-zinc-600 sm:gap-3.5 sm:text-[17px]"
+          className="flex items-center gap-3 text-[16px] font-semibold tracking-[-0.02em] text-zinc-950 transition hover:text-brand sm:gap-3.5 sm:text-[17px]"
         >
           <Image
             src="/images/logo.png"
@@ -62,14 +62,14 @@ const Navbar: React.FC = () => {
             <Link
               key={link.href}
               href={link.href}
-              className="text-[13px] font-medium text-zinc-500 transition duration-300 hover:text-zinc-950"
+              className="link-brand-hover text-[13px] font-medium text-zinc-500"
             >
               {link.label}
             </Link>
           ))}
           <Link
             href="/contact"
-            className="inline-flex h-10 items-center rounded-full bg-zinc-950 px-5 text-[13px] font-medium tracking-wide text-white shadow-[0_1px_0_0_rgba(255,255,255,0.06)_inset] ring-1 ring-zinc-950/5 transition duration-300 hover:bg-zinc-800"
+            className="btn-primary-brand h-10 px-5 text-[13px] font-medium tracking-wide"
           >
             Book a call
           </Link>
@@ -96,7 +96,7 @@ const Navbar: React.FC = () => {
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-xl px-3 py-3 text-[13px] font-medium text-zinc-800 transition hover:bg-zinc-200/40"
+              className="rounded-xl px-3 py-3 text-[13px] font-medium text-zinc-800 transition hover:bg-brand-soft hover:text-brand"
               onClick={() => setIsOpen(false)}
             >
               {link.label}
@@ -104,7 +104,7 @@ const Navbar: React.FC = () => {
           ))}
           <Link
             href="/contact"
-            className="mt-3 inline-flex h-11 items-center justify-center rounded-full bg-zinc-950 text-[13px] font-medium tracking-wide text-white"
+            className="btn-primary-brand mt-3 h-11 text-[13px] font-medium tracking-wide"
             onClick={() => setIsOpen(false)}
           >
             Book a strategy call
