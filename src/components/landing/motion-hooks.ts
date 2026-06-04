@@ -14,6 +14,6 @@ export function useMotionHydration() {
 
   return {
     mounted,
-    reduce: mounted && prefersReduced,
+    reduce: mounted && Boolean(prefersReduced),
   };
 }
