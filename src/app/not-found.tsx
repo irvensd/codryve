@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { ArrowLeft, Home } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Page not found — Codryve',
+  title: 'Page not found — Workloom Studio',
   description: 'That page does not exist or has moved.',
   robots: { index: false, follow: true },
 };

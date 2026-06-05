@@ -9,10 +9,26 @@ import { easeLux, inViewProps, motionDuration, transitionItem, viewportOnce } fr
 import { useMotionHydration } from './motion-hooks';
 
 const steps = [
-  { title: 'Discover', description: 'Process, constraints, and a shared picture of “done.”', icon: Search },
-  { title: 'Design', description: 'UX, data model, and plan—aligned before engineering starts.', icon: PenTool },
-  { title: 'Build', description: 'Iterations you can see. Feedback baked in, not bolted on.', icon: Code2 },
-  { title: 'Launch & refine', description: 'Go live, then improve with real usage—not assumptions.', icon: Rocket },
+  {
+    title: 'Discover',
+    description: 'We learn how your business works, what’s breaking, and what better should look like.',
+    icon: Search,
+  },
+  {
+    title: 'Design',
+    description: 'We map the structure, UX, and system flow before we build.',
+    icon: PenTool,
+  },
+  {
+    title: 'Build',
+    description: 'We create the website, workflow, or system with clear milestones and feedback.',
+    icon: Code2,
+  },
+  {
+    title: 'Launch & Improve',
+    description: 'We launch cleanly, then refine based on real usage.',
+    icon: Rocket,
+  },
 ];
 
 export function ProcessSection() {
@@ -22,12 +38,15 @@ export function ProcessSection() {
     <Section id="process" className="border-t border-zinc-200/60 bg-[#f4f4f2] py-24 sm:py-28 lg:py-32">
       <SectionHeader
         eyebrow="Process"
-        title="From ambiguity to a system you trust"
-        description="No mystery phases. You always know where things stand and what happens next."
+        title="From messy workflows to clear systems"
+        description="A straightforward path from scattered tools to something your team can actually use and trust."
       />
 
       <div className="relative mt-16 lg:mt-20">
-        <div className="absolute left-0 right-0 top-[2.25rem] hidden h-px bg-gradient-to-r from-transparent via-brand/30 to-transparent lg:block" aria-hidden />
+        <div
+          className="absolute left-0 right-0 top-[2.25rem] hidden h-px bg-gradient-to-r from-transparent via-brand/30 to-transparent lg:block"
+          aria-hidden
+        />
 
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {steps.map((step, index) => (

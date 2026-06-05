@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://codryve.com/sitemap.xml
+Sitemap: https://workloomstudio.com/sitemap.xml

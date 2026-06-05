@@ -34,7 +34,7 @@ const examples = [
     icon: Wrench,
   },
   {
-    title: 'Restaurant Growth System',
+    title: 'Restaurant growth system',
     description:
       'Mobile website, reservations, loyalty campaigns, and repeat-customer automation in one modern system.',
     icon: UtensilsCrossed,
@@ -47,9 +47,9 @@ export function SolutionsSection() {
   return (
     <Section id="solutions" className="border-t border-zinc-200/60 bg-white py-24 sm:py-28 lg:py-32">
       <SectionHeader
-        eyebrow="Reference builds"
-        title="Systems at this level of finish"
-        description="Illustrative—not case studies. Each example reflects the craft and scope we bring to client work."
+        eyebrow="Work"
+        title="Systems built for real operations"
+        description="A selection of websites, dashboards, automations, and growth systems designed to solve real business problems."
       />
 
       <div className="mt-16 grid gap-6 md:mt-20 md:grid-cols-2 md:gap-7 lg:grid-cols-3">

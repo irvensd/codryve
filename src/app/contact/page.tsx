@@ -3,7 +3,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin } from 'lucide-react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import ContactForm from '../../components/ContactForm';
 
 export default function ContactPage() {
@@ -13,7 +12,7 @@ export default function ContactPage() {
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Contact</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl">Book a strategy call</h1>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl">Book a Free Call</h1>
             <p className="mt-4 text-zinc-600">
               Share where things break today. We&apos;ll help you think in systems—whether we build together or not.
             </p>
@@ -45,8 +44,8 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-zinc-900">Email</p>
-                      <a href="mailto:hello@codryve.com" className="mt-0.5 block text-zinc-600 hover:text-blue-600">
-                        hello@codryve.com
+                      <a href="mailto:hello@workloomstudio.com" className="mt-0.5 block text-zinc-600 hover:text-brand">
+                        hello@workloomstudio.com
                       </a>
                     </div>
                   </li>
@@ -56,35 +55,12 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-zinc-900">Location</p>
-                      <p className="mt-0.5 text-zinc-600">Houston, TX · Remote-first</p>
+                      <p className="mt-0.5 text-zinc-600">Based in Florida. Serving local businesses everywhere.</p>
                     </div>
                   </li>
                 </ul>
               </div>
 
-              <div className="rounded-2xl border border-zinc-200/90 bg-white p-8 shadow-sm">
-                <h2 className="text-lg font-semibold text-zinc-950">Social</h2>
-                <div className="mt-5 flex gap-3">
-                  <a
-                    href="https://linkedin.com/company/codryve"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-200 text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
-                    aria-label="LinkedIn"
-                  >
-                    <FaLinkedin className="h-4 w-4" />
-                  </a>
-                  <a
-                    href="https://github.com/codryve"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-11 w-11 items-center justify-center rounded-lg border border-zinc-200 text-zinc-600 transition hover:border-zinc-300 hover:text-zinc-950"
-                    aria-label="GitHub"
-                  >
-                    <FaGithub className="h-4 w-4" />
-                  </a>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>

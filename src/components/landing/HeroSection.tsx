@@ -8,6 +8,8 @@ import { Section } from './Section';
 import { easeLux, entranceProps, motionDuration } from './motion';
 import { useMotionHydration } from './motion-hooks';
 
+const heroTags = ['Custom Websites', 'Automation & CRM', 'Dashboards', 'Ongoing Support'];
+
 export function HeroSection() {
   const { mounted, reduce } = useMotionHydration();
 
@@ -33,10 +35,10 @@ export function HeroSection() {
           <motion.p
             {...entranceProps(mounted, reduce, 12)}
             transition={{ duration: motionDuration(mounted, reduce, 0.5), ease: easeLux }}
-            className="inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.28em] text-brand"
+            className="text-eyebrow inline-flex items-center gap-2"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-brand shadow-[0_0_8px_rgba(37,99,235,0.5)]" aria-hidden />
-            Software studio · Custom systems
+            Systems that drive growth
           </motion.p>
 
           <motion.h1
@@ -44,7 +46,7 @@ export function HeroSection() {
             transition={{ duration: motionDuration(mounted, reduce, 0.6), delay: mounted && !reduce ? 0.04 : 0, ease: easeLux }}
             className="mt-5 text-[2.375rem] font-semibold leading-[1.06] tracking-[-0.035em] text-zinc-950 sm:text-5xl sm:leading-[1.05] lg:text-[3.25rem] xl:text-[3.5rem]"
           >
-            We Replace Chaos With Systems
+            We Turn Scattered Work Into Clean Systems.
           </motion.h1>
 
           <motion.p
@@ -52,8 +54,8 @@ export function HeroSection() {
             transition={{ duration: motionDuration(mounted, reduce, 0.55), delay: mounted && !reduce ? 0.1 : 0, ease: easeLux }}
             className="mt-6 max-w-2xl text-[1.0625rem] leading-[1.55] text-zinc-500 sm:text-lg sm:leading-relaxed"
           >
-            Custom websites, CRMs, dashboards, automations, and local growth systems for businesses that need
-            cleaner operations, stronger follow-up, and fewer disconnected tools.
+            Websites, automation, and systems for businesses that want clearer operations, more leads, and fewer
+            things slipping through the cracks.
           </motion.p>
 
           <motion.div
@@ -61,31 +63,37 @@ export function HeroSection() {
             transition={{ duration: motionDuration(mounted, reduce, 0.55), delay: mounted && !reduce ? 0.16 : 0, ease: easeLux }}
             className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
           >
-            <Link
-              href="/contact"
-              className="btn-primary-brand group h-12 gap-2 px-8 text-[13px] font-medium tracking-wide"
-            >
-              Book a strategy call
+            <Link href="/contact" className="btn-primary-brand group h-12 gap-2 px-8 text-[13px] font-medium tracking-wide">
+              Book a Free Call
               <ArrowRight
                 className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.75}
                 aria-hidden
               />
             </Link>
-            <Link
-              href="#services"
-              className="btn-secondary-brand h-12 px-8 text-[13px] font-medium tracking-wide"
-            >
-              See Services
+            <Link href="#solutions" className="btn-secondary-brand h-12 px-8 text-[13px] font-medium tracking-wide">
+              See Our Work
             </Link>
           </motion.div>
+
+          <motion.ul
+            {...entranceProps(mounted, reduce, 12)}
+            transition={{ duration: motionDuration(mounted, reduce, 0.55), delay: mounted && !reduce ? 0.2 : 0, ease: easeLux }}
+            className="mt-8 flex flex-wrap gap-x-4 gap-y-2 text-[13px] font-medium text-zinc-600"
+          >
+            {heroTags.map((tag) => (
+              <li key={tag} className="rounded-full border border-zinc-200/80 bg-white/70 px-3.5 py-1.5">
+                {tag}
+              </li>
+            ))}
+          </motion.ul>
 
           <motion.p
             {...entranceProps(mounted, reduce, 0)}
             transition={{ duration: motionDuration(mounted, reduce, 0.6), delay: mounted && !reduce ? 0.22 : 0, ease: easeLux }}
-            className="mt-12 text-sm leading-relaxed text-zinc-400"
+            className="mt-8 text-sm leading-relaxed text-zinc-400"
           >
-            Systems behind the growth—not just another pretty homepage.
+            Systems behind the growth, not just another pretty website.
           </motion.p>
         </div>
 
@@ -104,7 +112,7 @@ export function HeroSection() {
                   <span className="h-2 w-2 rounded-full bg-zinc-200" />
                 </div>
                 <span className="flex-1 truncate text-center font-mono text-[10px] font-medium tracking-wide text-zinc-400 sm:text-[11px]">
-                  app.codryve.io
+                  app.workloom.studio
                 </span>
               </div>
               <div className="grid grid-cols-12 gap-3 sm:gap-4">

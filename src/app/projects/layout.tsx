@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Work — Systems & representative scenarios',
   description:
-    'Representative scenarios and named builds: how Codryve designs intake, operations, growth sites, and internal products for real teams.',
+    'Representative scenarios and named builds: how Workloom Studio designs intake, operations, growth sites, and internal products for real teams.',
   alternates: { canonical: '/projects' },
   openGraph: {
     title: 'Work — Systems built for real operations',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   twitter: {
     title: 'Work — Systems built for real operations',
     description:
-      'Representative scenarios and named product work from the Codryve studio.',
+      'Representative scenarios and named product work from the Workloom Studio studio.',
   },
 };
 

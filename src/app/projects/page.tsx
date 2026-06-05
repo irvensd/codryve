@@ -211,7 +211,7 @@ export default function ProjectsPage() {
               href="/contact"
               className="group mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-8 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-100"
             >
-              Book a Strategy Call
+              Book a Free Call
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
             </Link>
           </div>
@@ -259,7 +259,7 @@ export default function ProjectsPage() {
       <section className="py-16 sm:py-20 lg:py-24">
         <div className="mx-auto max-w-[70rem] px-5 sm:px-8 lg:px-12">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">How Codryve builds differently</p>
+            <p className="text-[11px] font-medium uppercase tracking-[0.28em] text-zinc-500">How Workloom Studio builds differently</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-[-0.025em] text-zinc-950 sm:text-4xl">
               Why these systems work
             </h2>

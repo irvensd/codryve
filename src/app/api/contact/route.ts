@@ -196,7 +196,7 @@ export async function POST(req: Request) {
 
     await transporter.sendMail({
       from: process.env.SMTP_FROM_EMAIL,
-      to: 'support@codryve.com',
+      to: process.env.CONTACT_TO_EMAIL ?? 'hello@workloomstudio.com',
       replyTo: emailT,
       subject: mailSubject,
       text: textBody,

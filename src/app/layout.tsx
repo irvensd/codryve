@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Layout from "../components/Layout";
 import JsonLd from "../components/JsonLd";
+import { BRAND } from "@/lib/brand";
 
 const sans = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -10,25 +11,24 @@ const sans = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const ICON_VERSION = "20260421c";
+const ICON_VERSION = "20260605a";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://codryve.com"),
-  title: "Codryve — Custom CRMs, Automation & Software Systems",
-  description:
-    "We replace chaos with systems. Custom websites, CRMs, automation, dashboards, and software for firms, practices, churches, restaurants, and growing businesses.",
+  metadataBase: new URL(BRAND.siteUrl),
+  title: `${BRAND.name} — Websites, Automation & Business Systems`,
+  description: `${BRAND.tagline} ${BRAND.extendedPositioning}`,
   keywords:
-    "custom CRM, workflow automation, business dashboards, MVP development, software studio, law firm software, therapy practice software, church management systems",
-  authors: [{ name: "Codryve" }],
-  creator: "Codryve",
-  publisher: "Codryve",
+    "custom websites, workflow automation, business dashboards, CRM setup, local growth systems, software studio, Florida web development",
+  authors: [{ name: BRAND.name }],
+  creator: BRAND.name,
+  publisher: BRAND.name,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    siteName: "Codryve",
+    siteName: BRAND.name,
     locale: "en_US",
     type: "website",
     images: [
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         url: "/og",
         width: 1200,
         height: 630,
-        alt: "Codryve — Custom software studio",
+        alt: `${BRAND.name} — Websites, automation & systems`,
       },
     ],
   },
@@ -85,7 +85,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={sans.variable}>
+    <html lang="en" className={sans.variable} suppressHydrationWarning>
       <head>
         <link rel="icon" href={`/favicon.ico?v=${ICON_VERSION}`} sizes="any" />
         <link rel="shortcut icon" href={`/favicon.ico?v=${ICON_VERSION}`} />
@@ -100,12 +100,12 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="Codryve" />
-        <meta name="application-name" content="Codryve" />
+        <meta name="apple-mobile-web-app-title" content={BRAND.shortName} />
+        <meta name="application-name" content={BRAND.name} />
         <meta name="msapplication-TileColor" content="#f5f5f3" />
         <meta name="msapplication-TileImage" content="/android-chrome-192x192.png" />
       </head>
-      <body className={`${sans.className} font-sans antialiased`}>
+      <body className={`${sans.className} font-sans antialiased`} suppressHydrationWarning>
         <Layout>{children}</Layout>
         <div id="modal-root" />
       </body>

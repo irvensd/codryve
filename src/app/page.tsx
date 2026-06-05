@@ -11,22 +11,20 @@ import {
   ProcessSection,
   FinalCtaSection,
 } from '../components/landing';
+import { BRAND } from '@/lib/brand';
 
 export const metadata: Metadata = {
-  title: 'Codryve — Custom CRMs, Automation & Software Systems',
-  description:
-    'We replace chaos with systems. Custom websites, CRMs, automation, dashboards, local growth systems, and software for firms, practices, churches, restaurants, and growing businesses.',
+  title: `${BRAND.name} — Websites, Automation & Business Systems`,
+  description: `${BRAND.tagline} ${BRAND.extendedPositioning}`,
   alternates: { canonical: '/' },
   openGraph: {
-    title: 'Codryve — We Replace Chaos With Systems',
-    description:
-      'Custom CRMs, automation, dashboards, and software solutions for firms, practices, churches, and growing businesses.',
+    title: `${BRAND.name} — ${BRAND.tagline}`,
+    description: BRAND.extendedPositioning,
     url: '/',
   },
   twitter: {
-    title: 'Codryve — We Replace Chaos With Systems',
-    description:
-      'Custom CRMs, automation, dashboards, and software for organizations that need better systems.',
+    title: `${BRAND.name} — ${BRAND.tagline}`,
+    description: BRAND.positioning,
   },
 };
 

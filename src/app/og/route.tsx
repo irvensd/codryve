@@ -52,18 +52,18 @@ export async function GET() {
                 fontFamily: 'Inter',
               }}
             >
-              Codryve
+              Workloom Studio
             </h1>
             <p
               style={{
-                fontSize: 32,
+                fontSize: 28,
                 color: '#ffffff',
                 opacity: 0.9,
                 marginTop: 0,
                 fontFamily: 'Inter',
               }}
             >
-              Web Development & SaaS Solutions
+              We Turn Scattered Work Into Clean Systems.
             </p>
           </div>
         </div>

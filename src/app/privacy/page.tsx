@@ -2,19 +2,19 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Privacy Policy — Codryve',
+  title: 'Privacy Policy — Workloom Studio',
   description:
-    'How Codryve collects, uses, and protects information when you use codryve.com and our contact forms.',
+    'How Workloom Studio collects, uses, and protects information when you use workloomstudio.com and our contact forms.',
   alternates: { canonical: '/privacy' },
   openGraph: {
-    title: 'Privacy Policy — Codryve',
+    title: 'Privacy Policy — Workloom Studio',
     description:
-      'How we handle information on codryve.com, contact forms, cookies, and third parties.',
+      'How we handle information on workloomstudio.com, contact forms, cookies, and third parties.',
     url: '/privacy',
   },
   twitter: {
-    title: 'Privacy Policy — Codryve',
-    description: 'Codryve privacy practices for the website and inquiry forms.',
+    title: 'Privacy Policy — Workloom Studio',
+    description: 'Workloom Studio privacy practices for the website and inquiry forms.',
   },
 };
 
@@ -30,9 +30,9 @@ export default function PrivacyPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-zinc-950">Who we are</h2>
             <p>
-              Codryve (“we,” “us”) operates this website at{' '}
+              Workloom Studio (“we,” “us”) operates this website at{' '}
               <Link href="/" className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-500">
-                codryve.com
+                workloomstudio.com
               </Link>
               . This policy describes how we handle information when you visit the site or submit a form.
             </p>
@@ -101,10 +101,10 @@ export default function PrivacyPage() {
             <p>
               Questions about this policy:{' '}
               <a
-                href="mailto:hello@codryve.com"
+                href="mailto:hello@workloomstudio.com"
                 className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-500"
               >
-                hello@codryve.com
+                hello@workloomstudio.com
               </a>
               . We currently respond by email only.
             </p>

@@ -2,17 +2,17 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Terms of Use — Codryve',
-  description: 'Terms governing use of the Codryve website and inquiry forms.',
+  title: 'Terms of Use — Workloom Studio',
+  description: 'Terms governing use of the Workloom Studio website and inquiry forms.',
   alternates: { canonical: '/terms' },
   openGraph: {
-    title: 'Terms of Use — Codryve',
-    description: 'Terms for using codryve.com, content, liability, and Texas governing law.',
+    title: 'Terms of Use — Workloom Studio',
+    description: 'Terms for using workloomstudio.com, content, liability, and Texas governing law.',
     url: '/terms',
   },
   twitter: {
-    title: 'Terms of Use — Codryve',
-    description: 'Terms for using the Codryve website and forms.',
+    title: 'Terms of Use — Workloom Studio',
+    description: 'Terms for using the Workloom Studio website and forms.',
   },
 };
 
@@ -28,7 +28,7 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-zinc-950">Agreement</h2>
             <p>
-              By using codryve.com (the “Site”), you agree to these terms. If you do not agree, please do not use the Site. Codryve may update
+              By using workloomstudio.com (the “Site”), you agree to these terms. If you do not agree, please do not use the Site. Workloom Studio may update
               these terms; continued use after changes means you accept the updated terms.
             </p>
           </section>
@@ -36,7 +36,7 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-zinc-950">The Site</h2>
             <p>
-              The Site describes Codryve’s services and lets you send inquiries. Content is for general information only. It is not legal,
+              The Site describes Workloom Studio’s services and lets you send inquiries. Content is for general information only. It is not legal,
               financial, or professional advice for your specific situation.
             </p>
           </section>
@@ -57,7 +57,7 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-zinc-950">Intellectual property</h2>
             <p>
-              The Site’s design, text, graphics, and branding belong to Codryve or its licensors. You may not copy or reuse them without
+              The Site’s design, text, graphics, and branding belong to Workloom Studio or its licensors. You may not copy or reuse them without
               permission, except as allowed by law.
             </p>
           </section>
@@ -65,7 +65,7 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-zinc-950">Disclaimer of warranties</h2>
             <p>
-              The Site is provided “as is.” To the fullest extent permitted by law, Codryve disclaims warranties of merchantability, fitness
+              The Site is provided “as is.” To the fullest extent permitted by law, Workloom Studio disclaims warranties of merchantability, fitness
               for a particular purpose, and non-infringement.
             </p>
           </section>
@@ -73,7 +73,7 @@ export default function TermsPage() {
           <section className="space-y-3">
             <h2 className="text-lg font-semibold text-zinc-950">Limitation of liability</h2>
             <p>
-              To the fullest extent permitted by law, Codryve is not liable for indirect, incidental, special, consequential, or punitive
+              To the fullest extent permitted by law, Workloom Studio is not liable for indirect, incidental, special, consequential, or punitive
               damages, or any loss of profits or data, arising from your use of the Site. Our total liability for any claim relating to the
               Site is limited to the greater of one hundred U.S. dollars or the amount you paid us for the specific service giving rise to the
               claim in the twelve months before the claim (if any).
@@ -93,10 +93,10 @@ export default function TermsPage() {
             <p>
               Questions about these terms:{' '}
               <a
-                href="mailto:hello@codryve.com"
+                href="mailto:hello@workloomstudio.com"
                 className="font-medium text-zinc-900 underline decoration-zinc-300 underline-offset-4 hover:decoration-zinc-500"
               >
-                hello@codryve.com
+                hello@workloomstudio.com
               </a>
               .
             </p>

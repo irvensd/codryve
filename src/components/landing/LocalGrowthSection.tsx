@@ -64,9 +64,9 @@ export function LocalGrowthSection() {
   return (
     <Section id="local-growth" className="border-t border-zinc-200/60 bg-white py-24 sm:py-28 lg:py-32">
       <SectionHeader
-        eyebrow="Local Growth Systems"
-        title="Local growth, built like a system"
-        description="Most local businesses do not just need a prettier website. They need a clear message, a better customer journey, stronger follow-up, more reviews, and systems that turn attention into booked business."
+        eyebrow="Local growth systems"
+        title="Done-For-You Systems. Built to Grow."
+        description="Simple packages. Powerful systems. Built for local businesses."
       />
 
       <div className="mt-16 grid gap-6 lg:mt-20 lg:grid-cols-3 lg:gap-7">
@@ -83,7 +83,10 @@ export function LocalGrowthSection() {
             }`}
           >
             {pkg.featured && (
-              <div className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.25),transparent_70%)] blur-2xl" aria-hidden />
+              <div
+                className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.25),transparent_70%)] blur-2xl"
+                aria-hidden
+              />
             )}
             <p
               className={`text-[10px] font-medium uppercase tracking-[0.22em] ${
@@ -151,7 +154,7 @@ export function LocalGrowthSection() {
           href="/contact"
           className="btn-secondary-brand group h-11 gap-2 bg-white px-7 text-[13px] font-medium tracking-wide"
         >
-          Book a strategy call
+          Book a Free Call
           <ArrowRight className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5" strokeWidth={1.75} aria-hidden />
         </Link>
       </motion.div>

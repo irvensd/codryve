@@ -8,7 +8,7 @@ const About: React.FC = () => {
     <section id="about" className="py-12 md:py-20 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">About Codryve</h2>
+          <h2 className="text-3xl sm:text-4xl font-light text-gray-900 mb-4">About Workloom Studio</h2>
           <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto px-4">
             We transform ideas into digital reality through innovative web and app development solutions.
           </p>
@@ -49,7 +49,7 @@ const About: React.FC = () => {
         <div className="mt-12 md:mt-16 text-center">
           <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4 md:mb-6">Our Mission</h3>
           <p className="text-sm sm:text-base text-gray-600 max-w-3xl mx-auto px-4">
-            At Codryve, we&apos;re committed to delivering exceptional digital solutions that drive business growth. 
+            At Workloom Studio, we&apos;re committed to delivering exceptional digital solutions that drive business growth. 
             We believe in the power of technology to transform businesses and create meaningful impact.
           </p>
         </div>

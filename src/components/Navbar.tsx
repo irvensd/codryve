@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
+import { BRAND } from '@/lib/brand';
 
 const navLinks = [
   { href: '/#who-we-help', label: 'Industries' },
@@ -47,30 +48,25 @@ const Navbar: React.FC = () => {
           className="flex items-center gap-3 text-[16px] font-semibold tracking-[-0.02em] text-zinc-950 transition hover:text-brand sm:gap-3.5 sm:text-[17px]"
         >
           <Image
-            src="/images/logo.png"
-            alt="Codryve"
-            width={112}
-            height={112}
-            className="h-11 w-11 shrink-0 object-contain sm:h-[3.25rem] sm:w-[3.25rem] lg:h-14 lg:w-14"
+            src={BRAND.logoSrc}
+            alt=""
+            aria-hidden
+            width={BRAND.logoWidth}
+            height={BRAND.logoHeight}
+            className="h-9 w-auto shrink-0 object-contain sm:h-10"
+            sizes="48px"
             priority
           />
-          <span aria-hidden="true">Codryve</span>
+          <span>{BRAND.name}</span>
         </Link>
 
         <div className="hidden items-center gap-9 md:flex">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="link-brand-hover text-[13px] font-medium text-zinc-500"
-            >
+            <Link key={link.href} href={link.href} className="link-brand-hover text-[13px] font-medium text-zinc-500">
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
-            className="btn-primary-brand h-10 px-5 text-[13px] font-medium tracking-wide"
-          >
+          <Link href="/contact" className="btn-primary-brand h-10 px-5 text-[13px] font-medium tracking-wide">
             Book a call
           </Link>
         </div>
@@ -107,7 +103,7 @@ const Navbar: React.FC = () => {
             className="btn-primary-brand mt-3 h-11 text-[13px] font-medium tracking-wide"
             onClick={() => setIsOpen(false)}
           >
-            Book a strategy call
+            Book a call
           </Link>
         </div>
       </div>

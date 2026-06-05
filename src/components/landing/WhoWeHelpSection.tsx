@@ -49,7 +49,7 @@ export function WhoWeHelpSection() {
       <SectionHeader
         eyebrow="Who we serve"
         title="Organizations outgrowing generic software"
-        description="When off-the-shelf products fight your process, we shape systems to your standards—not the other way around."
+        description="When off-the-shelf tools fight your process, we shape systems around the way your business actually works."
       />
 
       <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3 lg:gap-6 xl:grid-cols-5">

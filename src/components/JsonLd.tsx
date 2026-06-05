@@ -1,25 +1,26 @@
+import { BRAND } from '@/lib/brand';
+
 export default function JsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'Codryve',
-    description:
-      'Custom software and automation studio. CRMs, workflow automation, dashboards, and MVP platforms for law firms, therapy practices, churches, and service businesses.',
-    url: 'https://codryve.com',
-    logo: 'https://codryve.com/og',
+    name: BRAND.name,
+    description: BRAND.extendedPositioning,
+    url: BRAND.siteUrl,
+    logo: `${BRAND.siteUrl}/og`,
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Houston',
-      addressRegion: 'TX',
+      addressRegion: 'FL',
       addressCountry: 'US',
     },
-    sameAs: ['https://github.com/codryve', 'https://linkedin.com/company/codryve'],
+    email: BRAND.email,
     areaServed: 'US',
     knowsAbout: [
-      'Custom CRM development',
+      'Custom website development',
       'Workflow automation',
-      'Business intelligence dashboards',
-      'MVP software development',
+      'CRM implementation',
+      'Business dashboards',
+      'Local growth systems',
     ],
   };
 

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { GitBranch, Palette, Zap, Cpu, LifeBuoy } from 'lucide-react';
+import { Compass, TrendingUp, ShieldCheck, HeartHandshake } from 'lucide-react';
 import { Section } from './Section';
 import { SectionHeader } from './SectionHeader';
 import { inViewProps, motionDuration, transitionItem, viewportOnce } from './motion';
@@ -10,29 +10,24 @@ import { useMotionHydration } from './motion-hooks';
 
 const reasons = [
   {
-    title: 'Mapped to your workflow',
-    body: 'We document how work really happens before we ship—so the product reinforces your standards.',
-    icon: GitBranch,
+    title: 'Strategy First',
+    body: 'We start with your goals and build a plan that makes sense.',
+    icon: Compass,
   },
   {
-    title: 'Restrained, sharp UX',
-    body: 'Interfaces people adopt: hierarchy first, decoration second, speed throughout.',
-    icon: Palette,
+    title: 'Built to Scale',
+    body: 'Our systems grow with your business, not against it.',
+    icon: TrendingUp,
   },
   {
-    title: 'Senior, small team',
-    body: 'Direct access. Tight scope. Weekly momentum—without agency layers.',
-    icon: Zap,
+    title: 'Clean & Reliable',
+    body: 'We keep everything simple, connected, and dependable.',
+    icon: ShieldCheck,
   },
   {
-    title: 'AI where it compounds',
-    body: 'We use it to move faster on delivery and rigor—not as a substitute for judgment.',
-    icon: Cpu,
-  },
-  {
-    title: 'After launch',
-    body: 'Training, tuning, and the next version—systems evolve with you.',
-    icon: LifeBuoy,
+    title: 'Support That Cares',
+    body: 'We’re here when you need us — fast, friendly, and reliable.',
+    icon: HeartHandshake,
   },
 ];
 
@@ -41,7 +36,7 @@ export function WhySection() {
 
   return (
     <Section
-      id="why-codryve"
+      id="why-workloom"
       className="relative overflow-hidden border-t border-zinc-800/50 bg-brand-navy py-24 text-white sm:py-28 lg:py-32"
     >
       <div className="pointer-events-none absolute inset-0">
@@ -53,12 +48,12 @@ export function WhySection() {
       <div className="relative">
         <SectionHeader
           variant="dark"
-          eyebrow="Why Codryve"
-          title="Product discipline, studio footprint"
-          description="We build the way serious software teams build—clear UX, careful engineering, and respect for your name in the market."
+          eyebrow="Why Workloom Studio"
+          title="We don’t just build websites. We build businesses."
+          description="We focus on systems that create clarity, save time, and help local businesses grow with less friction."
         />
 
-        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:mt-20 lg:grid-cols-3">
+        <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:mt-20">
           {reasons.map((r, index) => (
             <motion.div
               key={r.title}
