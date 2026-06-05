@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
+import { buildContactEmail, buildProjectEmail } from '@/lib/contact-email';
 import { getClientIp, takeContactRateLimit } from '@/lib/contact-rate-limit';
 
 const MAX_BODY_BYTES = 24 * 1024;
@@ -7,9 +8,10 @@ const MAX_BODY_BYTES = 24 * 1024;
 const LIMITS = {
   name: 200,
   email: 254,
-  subject: 300,
+  phone: 40,
   message: 12_000,
   company: 200,
+  serviceInterest: 300,
   projectDescription: 12_000,
   budget: 80,
   timeline: 80,
@@ -18,15 +20,6 @@ const LIMITS = {
 } as const;
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-function escapeHtml(input: string): string {
-  return input
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
 
 function str(body: Record<string, unknown>, key: string, max: number): string | null {
   const v = body[key];
@@ -51,7 +44,7 @@ export async function POST(req: Request) {
 
   const contentLength = req.headers.get('content-length');
   if (contentLength && Number(contentLength) > MAX_BODY_BYTES) {
-    return NextResponse.json({ error: 'Request too large' }, { status: 413 });
+    return NextResponse.json({ error: 'Request too large' }, { status: 400 });
   }
 
   let text: string;
@@ -62,7 +55,7 @@ export async function POST(req: Request) {
   }
 
   if (text.length > MAX_BODY_BYTES) {
-    return NextResponse.json({ error: 'Request too large' }, { status: 413 });
+    return NextResponse.json({ error: 'Request too large' }, { status: 400 });
   }
 
   let body: Record<string, unknown>;
@@ -74,14 +67,15 @@ export async function POST(req: Request) {
 
   const fax = body.fax;
   if (typeof fax === 'string' && fax.trim() !== '') {
-    return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
+    return NextResponse.json({ message: 'Message sent successfully' }, { status: 200 });
   }
 
   const name = str(body, 'name', LIMITS.name);
   const email = str(body, 'email', LIMITS.email);
-  const subject = str(body, 'subject', LIMITS.subject);
+  const phone = str(body, 'phone', LIMITS.phone);
   const message = str(body, 'message', LIMITS.message);
   const company = str(body, 'company', LIMITS.company);
+  const serviceInterest = str(body, 'serviceInterest', LIMITS.serviceInterest);
   const projectDescription = str(body, 'projectDescription', LIMITS.projectDescription);
   const budget = str(body, 'budget', LIMITS.budget);
   const timeline = str(body, 'timeline', LIMITS.timeline);
@@ -91,9 +85,10 @@ export async function POST(req: Request) {
   if (
     name === null ||
     email === null ||
-    subject === null ||
+    phone === null ||
     message === null ||
     company === null ||
+    serviceInterest === null ||
     projectDescription === null ||
     budget === null ||
     timeline === null ||
@@ -106,106 +101,72 @@ export async function POST(req: Request) {
   const nameT = name.trim();
   const emailT = email.trim();
   if (!nameT || !emailT || !EMAIL_RE.test(emailT)) {
-    return NextResponse.json({ error: 'Name and valid email are required' }, { status: 400 });
+    return NextResponse.json({ error: 'Name and a valid email are required' }, { status: 400 });
   }
 
   const isProjectRequest = projectDescription.trim().length > 0;
 
-  if (!isProjectRequest) {
-    const subj = subject.trim();
-    const msg = message.trim();
-    if (!subj || !msg) {
-      return NextResponse.json(
-        { error: 'Subject and message are required' },
-        { status: 400 }
-      );
-    }
+  if (!isProjectRequest && !message.trim()) {
+    return NextResponse.json({ error: 'Message is required' }, { status: 400 });
   }
 
-  if (
-    !process.env.SMTP_HOST ||
-    !process.env.SMTP_PORT ||
-    !process.env.SMTP_USER ||
-    !process.env.SMTP_PASSWORD ||
-    !process.env.SMTP_FROM_EMAIL
-  ) {
-    console.error('Contact API: missing SMTP environment variables');
-    return NextResponse.json({ error: 'Email is not configured' }, { status: 503 });
+  const apiKey = process.env.RESEND_API_KEY;
+  const toEmail = process.env.CONTACT_TO_EMAIL;
+  const fromEmail = process.env.CONTACT_FROM_EMAIL;
+
+  if (!apiKey || !toEmail || !fromEmail) {
+    console.error('Contact API: missing Resend environment variables');
+    return NextResponse.json(
+      { error: 'Email is not configured. Please try again later or email us directly.' },
+      { status: 503 }
+    );
   }
 
-  let mailSubject: string;
-  let textBody: string;
-  let htmlBody: string;
-
-  if (isProjectRequest) {
-    const desc = projectDescription.trim();
-    const svc = serviceType.trim() || 'unspecified';
-    mailSubject = `Project request (${svc}): ${nameT}`;
-    const lines = [
-      `Name: ${nameT}`,
-      `Email: ${emailT}`,
-      `Service: ${svc}`,
-      company.trim() ? `Company: ${company.trim()}` : null,
-      `Project description:\n${desc}`,
-      budget.trim() ? `Budget: ${budget.trim()}` : null,
-      timeline.trim() ? `Timeline: ${timeline.trim()}` : null,
-      additionalInfo.trim() ? `Additional:\n${additionalInfo.trim()}` : null,
-    ].filter(Boolean);
-    textBody = lines.join('\n\n');
-    htmlBody = `
-        <h3>New project request</h3>
-        <p><strong>Name:</strong> ${escapeHtml(nameT)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(emailT)}</p>
-        <p><strong>Service:</strong> ${escapeHtml(svc)}</p>
-        ${company.trim() ? `<p><strong>Company:</strong> ${escapeHtml(company.trim())}</p>` : ''}
-        <p><strong>Project description:</strong></p>
-        <p>${escapeHtml(desc).replace(/\n/g, '<br>')}</p>
-        ${budget.trim() ? `<p><strong>Budget:</strong> ${escapeHtml(budget.trim())}</p>` : ''}
-        ${timeline.trim() ? `<p><strong>Timeline:</strong> ${escapeHtml(timeline.trim())}</p>` : ''}
-        ${
-          additionalInfo.trim()
-            ? `<p><strong>Additional:</strong></p><p>${escapeHtml(additionalInfo.trim()).replace(/\n/g, '<br>')}</p>`
-            : ''
-        }
-      `;
-  } else {
-    const subj = subject.trim();
-    const msg = message.trim();
-    mailSubject = `Contact form: ${subj}`;
-    textBody = `Name: ${nameT}\nEmail: ${emailT}\nSubject: ${subj}\n\nMessage:\n${msg}`;
-    htmlBody = `
-        <h3>Contact form</h3>
-        <p><strong>Name:</strong> ${escapeHtml(nameT)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(emailT)}</p>
-        <p><strong>Subject:</strong> ${escapeHtml(subj)}</p>
-        <p><strong>Message:</strong></p>
-        <p>${escapeHtml(msg).replace(/\n/g, '<br>')}</p>
-      `;
-  }
+  const emailContent = isProjectRequest
+    ? buildProjectEmail({
+        name: nameT,
+        email: emailT,
+        serviceType: serviceType.trim() || 'unspecified',
+        projectDescription: projectDescription.trim(),
+        company: company.trim() || undefined,
+        budget: budget.trim() || undefined,
+        timeline: timeline.trim() || undefined,
+        additionalInfo: additionalInfo.trim() || undefined,
+      })
+    : buildContactEmail({
+        name: nameT,
+        email: emailT,
+        message: message.trim(),
+        phone: phone.trim() || undefined,
+        company: company.trim() || undefined,
+        serviceInterest: serviceInterest.trim() || undefined,
+      });
 
   try {
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: true,
-      auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASSWORD,
-      },
-    });
-
-    await transporter.sendMail({
-      from: process.env.SMTP_FROM_EMAIL,
-      to: process.env.CONTACT_TO_EMAIL ?? 'hello@workloomstudio.com',
+    const resend = new Resend(apiKey);
+    const { error } = await resend.emails.send({
+      from: fromEmail,
+      to: toEmail,
       replyTo: emailT,
-      subject: mailSubject,
-      text: textBody,
-      html: htmlBody,
+      subject: emailContent.subject,
+      html: emailContent.html,
+      text: emailContent.text,
     });
 
-    return NextResponse.json({ message: 'Email sent successfully' }, { status: 200 });
+    if (error) {
+      console.error('Resend error:', error);
+      return NextResponse.json(
+        { error: 'We could not send your message. Please try again or email us directly.' },
+        { status: 500 }
+      );
+    }
+
+    return NextResponse.json({ message: 'Message sent successfully' }, { status: 200 });
   } catch (error) {
     console.error('Error sending email:', error);
-    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'We could not send your message. Please try again or email us directly.' },
+      { status: 500 }
+    );
   }
 }
