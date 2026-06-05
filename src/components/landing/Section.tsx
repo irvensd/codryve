@@ -17,7 +17,7 @@ export function Section({ id, children, className = '', containerClassName = '' 
       className={`relative scroll-mt-[5.5rem] sm:scroll-mt-[5.25rem] ${className}`}
     >
       <div
-        className={`mx-auto w-full max-w-[70rem] px-5 sm:px-8 lg:px-12 ${containerClassName}`}
+        className={`mx-auto w-full min-w-0 max-w-[70rem] px-5 sm:px-8 lg:px-12 ${containerClassName}`}
       >
         {children}
       </div>

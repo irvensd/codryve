@@ -30,8 +30,8 @@ export function HeroSection() {
         <div className="absolute bottom-0 left-1/2 h-px w-[min(100%,64rem)] -translate-x-1/2 bg-gradient-to-r from-transparent via-zinc-200/90 to-transparent" />
       </div>
 
-      <div className="grid items-center gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
-        <div className="max-w-xl lg:max-w-none">
+      <div className="grid min-w-0 items-center gap-12 sm:gap-16 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 xl:gap-20">
+        <div className="min-w-0 max-w-xl lg:max-w-none">
           <motion.p
             {...entranceProps(mounted, reduce, 12)}
             transition={{ duration: motionDuration(mounted, reduce, 0.5), ease: easeLux }}
@@ -61,9 +61,9 @@ export function HeroSection() {
           <motion.div
             {...entranceProps(mounted, reduce, 16)}
             transition={{ duration: motionDuration(mounted, reduce, 0.55), delay: mounted && !reduce ? 0.16 : 0, ease: easeLux }}
-            className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
+            className="mt-10 flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
           >
-            <Link href="/contact" className="btn-primary-brand group h-12 gap-2 px-8 text-[13px] font-medium tracking-wide">
+            <Link href="/contact" className="btn-primary-brand group h-12 w-full gap-2 px-8 text-[13px] font-medium tracking-wide sm:w-auto">
               Book a Free Call
               <ArrowRight
                 className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5"
@@ -71,8 +71,8 @@ export function HeroSection() {
                 aria-hidden
               />
             </Link>
-            <Link href="#solutions" className="btn-secondary-brand h-12 px-8 text-[13px] font-medium tracking-wide">
-              See Our Work
+            <Link href="#services" className="btn-secondary-brand h-12 w-full px-8 text-[13px] font-medium tracking-wide sm:w-auto">
+              View services
             </Link>
           </motion.div>
 
@@ -100,7 +100,7 @@ export function HeroSection() {
         <motion.div
           {...entranceProps(mounted, reduce, 24)}
           transition={{ duration: motionDuration(mounted, reduce, 0.75), delay: mounted && !reduce ? 0.12 : 0, ease: easeLux }}
-          className="relative mx-auto w-full max-w-md lg:mx-0 lg:max-w-none"
+          className="relative mx-auto w-full min-w-0 max-w-md lg:mx-0 lg:max-w-none"
         >
           <div className="absolute -inset-6 rounded-[2rem] bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,rgba(37,99,235,0.12),transparent_70%)] blur-2xl" />
           <div className="relative overflow-hidden rounded-[1.75rem] border border-zinc-200/80 bg-white p-[1px] shadow-[0_32px_64px_-20px_rgba(37,99,235,0.12),0_0_0_1px_rgba(0,0,0,0.02)_inset] ring-1 ring-brand/5">

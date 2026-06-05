@@ -28,6 +28,8 @@ html {
   scroll-behavior: smooth;
   font-size: 16px;
   overscroll-behavior-y: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 /* Fixed navbar: anchor links land below the header */
@@ -47,8 +49,11 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   min-height: 100vh;
+  min-height: 100dvh;
   overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 @tailwind base;
@@ -56,12 +61,12 @@ body {
 @tailwind utilities;
 
 main {
-  padding-top: 4.75rem;
+  padding-top: calc(4.75rem + env(safe-area-inset-top, 0px));
 }
 
 @media (min-width: 640px) {
   main {
-    padding-top: 5.25rem;
+    padding-top: calc(5.25rem + env(safe-area-inset-top, 0px));
   }
 }
 

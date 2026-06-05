@@ -105,7 +105,7 @@ const ContactForm: React.FC = () => {
     }`;
 
   return (
-    <div id="contact" className="rounded-2xl border border-zinc-200/90 bg-white p-8 shadow-sm sm:p-10">
+    <div id="contact" className="rounded-2xl border border-zinc-200/90 bg-white p-5 shadow-sm sm:p-8 lg:p-10">
       <div className="mb-8">
         <h2 className="text-2xl font-semibold tracking-tight text-zinc-950">Send a message</h2>
         <p className="mt-2 text-sm text-zinc-600">
