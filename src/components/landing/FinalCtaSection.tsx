@@ -29,7 +29,7 @@ export function FinalCtaSection() {
             Let&apos;s Build Your Next System.
           </h2>
           <p className="mx-auto mt-5 max-w-lg text-sm leading-relaxed text-zinc-400 sm:text-[0.9375rem]">
-            Book a free call and let&apos;s talk about how we can help your business grow with the right systems in
+            Send us a message and let&apos;s talk about how we can help your business grow with the right systems in
             place.
           </p>
           <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
@@ -37,14 +37,14 @@ export function FinalCtaSection() {
               href="/contact"
               className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-9 text-[13px] font-medium tracking-wide text-zinc-950 shadow-[0_1px_0_0_rgba(0,0,0,0.04)_inset] ring-1 ring-white/10 transition duration-300 hover:bg-zinc-100 hover:shadow-[0_0_32px_-4px_rgba(59,130,246,0.45)] hover:ring-brand/30"
             >
-              Book a Free Call
+              Get in touch
               <ArrowRight className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5" strokeWidth={1.75} aria-hidden />
             </Link>
             <Link
-              href="#solutions"
+              href="#services"
               className="inline-flex h-12 items-center justify-center rounded-full border border-white/20 bg-white/5 px-9 text-[13px] font-medium tracking-wide text-white transition duration-300 hover:border-brand/40 hover:bg-white/10"
             >
-              View Our Work
+              View services
             </Link>
           </div>
         </div>

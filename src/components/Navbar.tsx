@@ -106,7 +106,7 @@ const Navbar: React.FC = () => {
               </Link>
             ))}
             <Link href="/contact" className="btn-primary-brand h-10 px-5 text-[13px] font-medium tracking-wide">
-              Book a call
+              Get in touch
             </Link>
           </div>
 
@@ -144,7 +144,7 @@ const Navbar: React.FC = () => {
               className="btn-primary-brand mt-3 h-11 text-[13px] font-medium tracking-wide"
               onClick={closeMenu}
             >
-              Book a call
+              Get in touch
             </Link>
           </div>
         </div>

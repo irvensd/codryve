@@ -154,7 +154,7 @@ export function LocalGrowthSection() {
           href="/contact"
           className="btn-secondary-brand group h-11 gap-2 bg-white px-7 text-[13px] font-medium tracking-wide"
         >
-          Book a Free Call
+          Get in touch
           <ArrowRight className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5" strokeWidth={1.75} aria-hidden />
         </Link>
       </motion.div>

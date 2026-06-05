@@ -211,7 +211,7 @@ export default function ProjectsPage() {
               href="/contact"
               className="group mt-6 inline-flex h-11 items-center justify-center gap-2 rounded-full bg-white px-8 text-sm font-semibold text-zinc-950 transition hover:bg-zinc-100"
             >
-              Book a Free Call
+              Get in touch
               <ArrowRight className="h-4 w-4 transition group-hover:translate-x-0.5" />
             </Link>
           </div>

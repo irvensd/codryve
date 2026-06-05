@@ -64,7 +64,7 @@ export function HeroSection() {
             className="mt-10 flex w-full flex-col gap-3 sm:flex-row sm:items-center sm:gap-4"
           >
             <Link href="/contact" className="btn-primary-brand group h-12 w-full gap-2 px-8 text-[13px] font-medium tracking-wide sm:w-auto">
-              Book a Free Call
+              Get in touch
               <ArrowRight
                 className="h-4 w-4 transition duration-300 group-hover:translate-x-0.5"
                 strokeWidth={1.75}
