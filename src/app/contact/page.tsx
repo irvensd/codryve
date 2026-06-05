@@ -13,9 +13,9 @@ export default function ContactPage() {
         <div className="mx-auto max-w-6xl px-5 sm:px-6 lg:px-8">
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-600">Contact</p>
-            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl">Book a Free Call</h1>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl">Get in touch</h1>
             <p className="mt-4 text-zinc-600">
-              Share where things break today. We&apos;ll help you think in systems—whether we build together or not.
+              Send a message below or email us directly. We&apos;ll reply within one business day.
             </p>
           </div>
 
