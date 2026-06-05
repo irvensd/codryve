@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: `${BRAND.name} — Websites, Automation & Business Systems`,
   description: `${BRAND.tagline} ${BRAND.extendedPositioning}`,
   keywords:
-    "custom websites, workflow automation, business dashboards, CRM setup, local growth systems, software studio, Florida web development",
+    "custom websites, workflow automation, business dashboards, CRM setup, local growth systems, software studio, Houston web development",
   authors: [{ name: BRAND.name }],
   creator: BRAND.name,
   publisher: BRAND.name,

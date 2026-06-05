@@ -12,5 +12,5 @@ export const BRAND = {
   logoSrc: '/images/workloom-logo.png',
   logoWidth: 971,
   logoHeight: 591,
-  location: 'Based in Florida. Serving local businesses everywhere.',
+  location: 'Based in Houston. Serving local businesses everywhere.',
 } as const;

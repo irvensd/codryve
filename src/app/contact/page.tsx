@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, MapPin } from 'lucide-react';
 import ContactForm from '../../components/ContactForm';
+import { BRAND } from '@/lib/brand';
 
 export default function ContactPage() {
   return (
@@ -55,7 +56,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-zinc-900">Location</p>
-                      <p className="mt-0.5 text-zinc-600">Based in Florida. Serving local businesses everywhere.</p>
+                      <p className="mt-0.5 text-zinc-600">{BRAND.location}</p>
                     </div>
                   </li>
                 </ul>
